@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="TimeObject.cpp">
+      <Filter>TimeObject</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>stdafxh</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeVariable.cpp">
+      <Filter>TimeVariable</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TimeEntity.h">
+      <Filter>TimeEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeObject.h">
+      <Filter>TimeObject</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>stdafxh</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeVariable.h">
+      <Filter>TimeVariable</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="TimeEntity">
+      <UniqueIdentifier>{9922da70-4f20-426c-8210-4a927adb6447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeObject">
+      <UniqueIdentifier>{68c132c9-5ea2-4296-890f-770b332e4d41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stdafxh">
+      <UniqueIdentifier>{929e112e-b50b-4491-b5f5-25650c9040ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeVariable">
+      <UniqueIdentifier>{df358a81-c6c7-45ad-a953-85a654ad9e19}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
