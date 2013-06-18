@@ -20,3 +20,4 @@
 *.opensdf
 Debug/*
 Release/*
+*.sdf
