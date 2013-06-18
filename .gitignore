@@ -11,3 +11,12 @@
 *.lai
 *.la
 *.a
+
+# Visual Studio
+*.tlog
+*.unsuccessfulbuild
+*.lastbuildstate
+*.ipch
+*.opensdf
+Debug/*
+Release/*
