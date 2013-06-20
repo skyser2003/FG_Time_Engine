@@ -1,9 +1,19 @@
 #include "stdafx.h"
 #include "TimeObject.h"
 
+#include "TimeEntity.h"
+
 namespace FG
 {
-	void TimeObject::TimeUpdate(int ms)
+	TimeObject::~TimeObject()
+	{
+		for(auto it : timeEntities)
+		{
+			delete it;
+		}
+	}
+
+	void TimeObject::Update(int ms)
 	{
 
 	}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 namespace FG
 {
 	class ITimeVariable
@@ -10,40 +12,55 @@ namespace FG
 	};
 
 	template <typename T, typename timeSize = unsigned long>
-	class TimeVariable
+	class TimeVariable final
 	{
 	public:
-		TimeVariable() : latestValue(nullptr), variable(nullptr)
+		TimeVariable() : latestValue(nullptr)
 		{
 		}
 
-		void Update(timeSize currentTime) final
+		void Update(timeSize currentTime)
 		{
-			if(*variable != *latestValue)
+			if(variable != *latestValue)
 			{
-				timeCapsule.insert(std::make_pair(currentTime, *variable));
+				timeCapsule.insert(std::make_pair(currentTime, variable));
 			}
 		}
+		T GetValue(timeSize wantedTime)
+		{
+			if(timeCapsule.size() == 0)
+			{
+				return variable;
+			}
+			else if(timeCapsule.size() == 1)
+			{
 
-		void SetVariable(T variable)
-		{
-			this->variable = &variable;
+			}
+
+			auto itNext = timeCapsule.begin();
+			++itNext;
+
+			for(auto it : timeCapsule)
+			{
+
+			}
+
+			// If no time has passed or wantedTime isn't valid
+			return variable;
 		}
-		void SetVariable(T* variable)
+
+		operator T&()
 		{
-			this->variable = variable;
+			return variable;
 		}
-		
-		T GetVariable()
+		operator const T&() const
 		{
-			return *variable;
+			return variable;
 		}
-		T GetVariable(timeSize wantedTime)
-		{
-		}
+
 	private:
 		T* latestValue;
-		T* variable;
+		T variable;
 		std::map<timeSize, T> timeCapsule;
 	};
 }

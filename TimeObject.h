@@ -1,12 +1,17 @@
 #pragma once
 
+#include <vector>
+
 namespace FG
 {
 	class TimeEntity;
+
 	class TimeObject
 	{
 	public:
-		void TimeUpdate(int ms);
+		virtual ~TimeObject();
+
+		void Update(int ms);
 
 		void AddEntity(TimeEntity* entity);
 	private:
