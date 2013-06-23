@@ -2,10 +2,12 @@
 
 namespace FG
 {
+	class TimeObject;
+
 	class TimeEntity
 	{
 	public:
-		void Update(int ms);
+		virtual void Update(int dt, TimeObject* object);
 	private:
 	};
 }

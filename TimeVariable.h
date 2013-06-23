@@ -1,66 +1,86 @@
 #pragma once
 
+#include "ITimeVariable.h"
 #include <map>
 
 namespace FG
 {
-	class ITimeVariable
+	template <typename T>
+	class TimeVariable final : public ITimeVariable
 	{
 	public:
-		virtual void Update(int ms) = 0;
-	private:
-	};
-
-	template <typename T, typename timeSize = unsigned long>
-	class TimeVariable final
-	{
-	public:
-		TimeVariable() : latestValue(nullptr)
+		TimeVariable()
 		{
 		}
-
-		void Update(timeSize currentTime)
+		TimeVariable(T value)
 		{
-			if(variable != *latestValue)
-			{
-				timeCapsule.insert(std::make_pair(currentTime, variable));
-			}
+			this->value = value;
+
+			Update(0);
 		}
-		T GetValue(timeSize wantedTime)
+
+		void Initialize()
+		{
+			timeCapsule.insert(std::make_pair(0, value));
+		}
+		void Destroy()
+		{
+
+		}
+		void Update(unsigned long currentTime) override
 		{
 			if(timeCapsule.size() == 0)
 			{
-				return variable;
+				timeCapsule.insert(std::make_pair(currentTime, value));
+			}
+			else if(value != timeCapsule.rbegin()->second)
+			{
+				timeCapsule.insert(std::make_pair(currentTime, value));
+			}
+		}
+
+		T GetValue(unsigned long wantedTime)
+		{
+			if(timeCapsule.size() == 0)
+			{
+				return value;
 			}
 			else if(timeCapsule.size() == 1)
 			{
-
+				return timeCapsule.begin()->second;
 			}
 
-			auto itNext = timeCapsule.begin();
-			++itNext;
-
-			for(auto it : timeCapsule)
+			for(std::pair<unsigned long, T> it : timeCapsule)
 			{
-
+				if(it.first < wantedTime)
+				{
+					
+				}
 			}
 
 			// If no time has passed or wantedTime isn't valid
-			return variable;
+			return value;
+		}
+
+		void Set(T value)
+		{
+			this->value = value;
+		}
+		T Get()
+		{
+			return value;
 		}
 
 		operator T&()
 		{
-			return variable;
+			return value;
 		}
 		operator const T&() const
 		{
-			return variable;
+			return value;
 		}
-
 	private:
-		T* latestValue;
-		T variable;
-		std::map<timeSize, T> timeCapsule;
+		T value;
+		std::map<unsigned long, T> timeCapsule;
 	};
 }

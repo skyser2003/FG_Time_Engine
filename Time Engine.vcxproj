@@ -65,9 +65,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ITimeVariable.h" />
     <ClInclude Include="NormalTimeEntity.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TimeEntity.h" />
+    <ClInclude Include="TimeManager.h" />
     <ClInclude Include="TimeObject.h" />
     <ClInclude Include="TimeVariable.h" />
   </ItemGroup>
@@ -76,6 +78,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TimeEntity.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="TimeObject.cpp" />
     <ClCompile Include="TimeVariable.cpp" />
   </ItemGroup>

@@ -13,6 +13,9 @@
     <ClCompile Include="TimeEntity.cpp">
       <Filter>TimeEntity</Filter>
     </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>TimeManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeEntity.h">
@@ -30,6 +33,12 @@
     <ClInclude Include="NormalTimeEntity.h">
       <Filter>TimeEntities</Filter>
     </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ITimeVariable.h">
+      <Filter>TimeVariable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TimeEntity">
@@ -46,6 +55,9 @@
     </Filter>
     <Filter Include="TimeEntities">
       <UniqueIdentifier>{1382f27d-fb63-4b0a-9219-a870ee7a250b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeManager">
+      <UniqueIdentifier>{ee3ccdf1-0c21-4b2f-afe2-77bd29d3152d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

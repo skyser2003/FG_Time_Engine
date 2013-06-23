@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Time Engine", "Time Engine.vcxproj", "{20F324E7-F880-4C88-8C7E-BA58EFC36849}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Time Engine Test", "..\Time Engine Test\Time Engine Test.vcxproj", "{C4BEB876-83E2-4CAE-883A-83BEF4E7BC31}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TimeTetris", "..\TimeTetris\TimeTetris.vcxproj", "{C3B17557-FC98-4253-BD16-04747C629759}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,12 +19,12 @@ Global
 		{20F324E7-F880-4C88-8C7E-BA58EFC36849}.Release|Win32.ActiveCfg = Release|Win32
 		{20F324E7-F880-4C88-8C7E-BA58EFC36849}.Release|Win32.Build.0 = Release|Win32
 		{20F324E7-F880-4C88-8C7E-BA58EFC36849}.Release|x64.ActiveCfg = Release|Win32
-		{C4BEB876-83E2-4CAE-883A-83BEF4E7BC31}.Debug|Win32.ActiveCfg = Debug|Win32
-		{C4BEB876-83E2-4CAE-883A-83BEF4E7BC31}.Debug|Win32.Build.0 = Debug|Win32
-		{C4BEB876-83E2-4CAE-883A-83BEF4E7BC31}.Debug|x64.ActiveCfg = Debug|Win32
-		{C4BEB876-83E2-4CAE-883A-83BEF4E7BC31}.Release|Win32.ActiveCfg = Release|Win32
-		{C4BEB876-83E2-4CAE-883A-83BEF4E7BC31}.Release|Win32.Build.0 = Release|Win32
-		{C4BEB876-83E2-4CAE-883A-83BEF4E7BC31}.Release|x64.ActiveCfg = Release|Win32
+		{C3B17557-FC98-4253-BD16-04747C629759}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C3B17557-FC98-4253-BD16-04747C629759}.Debug|Win32.Build.0 = Debug|Win32
+		{C3B17557-FC98-4253-BD16-04747C629759}.Debug|x64.ActiveCfg = Debug|Win32
+		{C3B17557-FC98-4253-BD16-04747C629759}.Release|Win32.ActiveCfg = Release|Win32
+		{C3B17557-FC98-4253-BD16-04747C629759}.Release|Win32.Build.0 = Release|Win32
+		{C3B17557-FC98-4253-BD16-04747C629759}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
