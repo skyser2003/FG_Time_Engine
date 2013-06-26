@@ -1,7 +1,9 @@
 #pragma once
 
-#include "ITimeVariable.h"
+#include <fstream>
 #include <map>
+
+#include "ITimeVariable.h"
 
 namespace FG
 {
@@ -15,15 +17,16 @@ namespace FG
 		TimeVariable(T value)
 		{
 			this->value = value;
-
-			Update(0);
+		}
+		~TimeVariable()
+		{
 		}
 
-		void Initialize()
+		void StartTimer() override
 		{
 			timeCapsule.insert(std::make_pair(0, value));
 		}
-		void Destroy()
+		void EndTimer() override
 		{
 
 		}
@@ -38,6 +41,10 @@ namespace FG
 				timeCapsule.insert(std::make_pair(currentTime, value));
 			}
 		}
+		void SetToTime(unsigned long wantedTime)
+		{
+			value = GetValue(wantedTime);
+		}
 
 		T GetValue(unsigned long wantedTime)
 		{
@@ -50,11 +57,17 @@ namespace FG
 				return timeCapsule.begin()->second;
 			}
 
-			for(std::pair<unsigned long, T> it : timeCapsule)
+			for(auto it = timeCapsule.begin(); it != timeCapsule.end(); ++it)
 			{
-				if(it.first < wantedTime)
+				if(it->first < wantedTime)
 				{
-					
+					--it;
+					return it->second;
+				}
+				//temp
+				else if(it->first == wantedTime)
+				{
+					return it->second;
 				}
 			}
 
@@ -62,22 +75,22 @@ namespace FG
 			return value;
 		}
 
-		void Set(T value)
+		T& operator*()
 		{
-			this->value = value;
+			return value;
 		}
-		T Get()
+		const T& operator*() const
 		{
 			return value;
 		}
 
-		operator T&()
+		T* operator->()
 		{
-			return value;
+			return &value;
 		}
-		operator const T&() const
+		const T* operator->() const
 		{
-			return value;
+			return &value;
 		}
 	private:
 		T value;

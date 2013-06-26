@@ -6,6 +6,10 @@
 
 namespace FG
 {
+	TimeObject::TimeObject() : paused(false), startTime(0)
+	{
+
+	}
 	TimeObject::~TimeObject()
 	{
 		for(auto it : timeEntities)
@@ -14,11 +18,40 @@ namespace FG
 		}
 	}
 
-	void TimeObject::Update(unsigned long currentTime)
+	void TimeObject::StartTimer(unsigned long startTime)
+	{
+		this->startTime = startTime;
+
+		for(auto var : timeVariables)
+		{
+			var->StartTimer();
+		}
+	}
+	void TimeObject::EndTimer()
 	{
 		for(auto var : timeVariables)
 		{
+			var->EndTimer();
+		}
+	}
+	void TimeObject::Update(unsigned long currentTime)
+	{
+		currentTime -= startTime;
+
+		if(currentTime < 0)
+			currentTime = 0;
+
+		for(auto var : timeVariables)
+		{
 			var->Update(currentTime);
+		}
+	}
+
+	void TimeObject::SetToTime(unsigned long wantedTime)
+	{
+		for(auto var : timeVariables)
+		{
+			var->SetToTime(wantedTime);
 		}
 	}
 
@@ -47,5 +80,8 @@ namespace FG
 	{
 		return timeVariables;
 	}
-
+	int TimeObject::GetStartTime() const
+	{
+		return startTime;
+	}
 }
