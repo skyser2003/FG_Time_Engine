@@ -20,9 +20,9 @@ namespace FG
 		void UnregisterTimeObject(TimeObject* object);
 		void ClearTimeObjects();
 
-		unsigned long GetCurrentTime() const;
+		long GetTime() const;
 	private:
-		unsigned long currentTime;
+		long currentTime;
 		std::vector<TimeObject*> timeObjects;
 	};
 }

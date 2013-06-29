@@ -13,11 +13,11 @@ namespace FG
 		TimeObject();
 		virtual ~TimeObject();
 
-		virtual void StartTimer(unsigned long startTime);
+		virtual void StartTimer(long startTime);
 		virtual void EndTimer();
-		void Update(unsigned long currentTime);
+		void Update(long currentTime);
 
-		void SetToTime(unsigned long wantedTime);
+		void SetToTime(long wantedTime);
 
 		void AddEntity(TimeEntity* entity);
 
@@ -25,12 +25,10 @@ namespace FG
 		void UnRegisterTimeVariable(ITimeVariable* variable);
 
 		const std::vector<ITimeVariable*> GetTimeVariables() const;
-		int GetStartTime() const;
 	private:
 		std::vector<TimeEntity*> timeEntities;
 		std::vector<ITimeVariable*> timeVariables;
 
-		unsigned long startTime;
 		bool paused;
 	};
 }

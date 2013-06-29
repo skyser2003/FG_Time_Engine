@@ -6,7 +6,7 @@
 
 namespace FG
 {
-	TimeObject::TimeObject() : paused(false), startTime(0)
+	TimeObject::TimeObject() : paused(false)
 	{
 
 	}
@@ -18,13 +18,11 @@ namespace FG
 		}
 	}
 
-	void TimeObject::StartTimer(unsigned long startTime)
+	void TimeObject::StartTimer(long startTime)
 	{
-		this->startTime = startTime;
-
 		for(auto var : timeVariables)
 		{
-			var->StartTimer();
+			var->StartTimer(startTime);
 		}
 	}
 	void TimeObject::EndTimer()
@@ -34,20 +32,15 @@ namespace FG
 			var->EndTimer();
 		}
 	}
-	void TimeObject::Update(unsigned long currentTime)
+	void TimeObject::Update(long currentTime)
 	{
-		currentTime -= startTime;
-
-		if(currentTime < 0)
-			currentTime = 0;
-
 		for(auto var : timeVariables)
 		{
 			var->Update(currentTime);
 		}
 	}
 
-	void TimeObject::SetToTime(unsigned long wantedTime)
+	void TimeObject::SetToTime(long wantedTime)
 	{
 		for(auto var : timeVariables)
 		{
@@ -79,9 +72,5 @@ namespace FG
 	const std::vector<ITimeVariable*> TimeObject::GetTimeVariables() const
 	{
 		return timeVariables;
-	}
-	int TimeObject::GetStartTime() const
-	{
-		return startTime;
 	}
 }

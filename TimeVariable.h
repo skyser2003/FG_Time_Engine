@@ -22,15 +22,15 @@ namespace FG
 		{
 		}
 
-		void StartTimer() override
+		void StartTimer(long startTime) override
 		{
-			timeCapsule.insert(std::make_pair(0, value));
+			timeCapsule.insert(std::make_pair(startTime, value));
 		}
 		void EndTimer() override
 		{
 
 		}
-		void Update(unsigned long currentTime) override
+		void Update(long currentTime) override
 		{
 			if(timeCapsule.size() == 0)
 			{
@@ -41,12 +41,12 @@ namespace FG
 				timeCapsule.insert(std::make_pair(currentTime, value));
 			}
 		}
-		void SetToTime(unsigned long wantedTime)
+		void SetToTime(long wantedTime)
 		{
 			value = GetValue(wantedTime);
 		}
 
-		T GetValue(unsigned long wantedTime)
+		T GetValue(long wantedTime)
 		{
 			if(timeCapsule.size() == 0)
 			{
@@ -59,9 +59,13 @@ namespace FG
 
 			for(auto it = timeCapsule.begin(); it != timeCapsule.end(); ++it)
 			{
-				if(it->first < wantedTime)
+				if(it->first > wantedTime)
 				{
-					--it;
+					if(it != timeCapsule.begin())
+					{
+						--it;
+					}
+
 					return it->second;
 				}
 				//temp
@@ -94,6 +98,6 @@ namespace FG
 		}
 	private:
 		T value;
-		std::map<unsigned long, T> timeCapsule;
+		std::map<long, T> timeCapsule;
 	};
 }

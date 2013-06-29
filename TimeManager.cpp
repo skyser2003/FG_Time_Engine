@@ -52,7 +52,7 @@ namespace FG
 		timeObjects.clear();
 	}
 
-	unsigned long TimeManager::GetCurrentTime() const
+	long TimeManager::GetTime() const
 	{
 		return currentTime;
 	}
