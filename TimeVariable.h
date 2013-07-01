@@ -46,17 +46,8 @@ namespace FG
 			value = GetValue(wantedTime);
 		}
 
-		T GetValue(long wantedTime)
+		T GetValue(long wantedTime) const
 		{
-			if(timeCapsule.size() == 0)
-			{
-				return value;
-			}
-			else if(timeCapsule.size() == 1)
-			{
-				return timeCapsule.begin()->second;
-			}
-
 			for(auto it = timeCapsule.begin(); it != timeCapsule.end(); ++it)
 			{
 				if(it->first > wantedTime)
@@ -66,11 +57,6 @@ namespace FG
 						--it;
 					}
 
-					return it->second;
-				}
-				//temp
-				else if(it->first == wantedTime)
-				{
 					return it->second;
 				}
 			}
@@ -95,6 +81,15 @@ namespace FG
 		const T* operator->() const
 		{
 			return &value;
+		}
+
+		bool operator==(const TimeVariable<T>& rhs) const
+		{
+			return value == rhs.value;
+		}
+		bool operator!=(const TimeVariable<T>& rhs) const
+		{
+			return !((*this) == rhs);
 		}
 	private:
 		T value;

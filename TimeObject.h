@@ -25,10 +25,12 @@ namespace FG
 		void UnRegisterTimeVariable(ITimeVariable* variable);
 
 		const std::vector<ITimeVariable*> GetTimeVariables() const;
+		long GetStartTime() const;
 	private:
 		std::vector<TimeEntity*> timeEntities;
 		std::vector<ITimeVariable*> timeVariables;
 
 		bool paused;
+		long startTime;
 	};
 }
