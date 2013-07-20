@@ -7,10 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TimeTetris", "..\TimeTetris
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D", "..\..\Box2D_v2.2.1\Build\vs2010\Box2D.vcxproj", "{98400D17-43A5-1A40-95BE-C53AC78E7694}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeGLUT", "..\..\Box2D_v2.2.1\Build\vs2010\FreeGLUT.vcxproj", "{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLUI", "..\..\Box2D_v2.2.1\Build\vs2010\GLUI.vcxproj", "{6F01DB00-32F0-A842-9B60-3ABA75A2D458}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -39,22 +35,6 @@ Global
 		{98400D17-43A5-1A40-95BE-C53AC78E7694}.Release|Win32.Build.0 = Release|Win32
 		{98400D17-43A5-1A40-95BE-C53AC78E7694}.Release|x64.ActiveCfg = Release|x64
 		{98400D17-43A5-1A40-95BE-C53AC78E7694}.Release|x64.Build.0 = Release|x64
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Debug|Win32.Build.0 = Debug|Win32
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Debug|x64.ActiveCfg = Debug|x64
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Debug|x64.Build.0 = Debug|x64
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Release|Win32.ActiveCfg = Release|Win32
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Release|Win32.Build.0 = Release|Win32
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Release|x64.ActiveCfg = Release|x64
-		{BCA4569B-A486-E443-9EE2-07D4CB3CFBA8}.Release|x64.Build.0 = Release|x64
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Debug|Win32.Build.0 = Debug|Win32
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Debug|x64.ActiveCfg = Debug|x64
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Debug|x64.Build.0 = Debug|x64
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Release|Win32.ActiveCfg = Release|Win32
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Release|Win32.Build.0 = Release|Win32
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Release|x64.ActiveCfg = Release|x64
-		{6F01DB00-32F0-A842-9B60-3ABA75A2D458}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

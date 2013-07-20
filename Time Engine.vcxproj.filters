@@ -16,6 +16,12 @@
     <ClCompile Include="TimeManager.cpp">
       <Filter>TimeManager</Filter>
     </ClCompile>
+    <ClCompile Include="NormalTimeEntity.cpp">
+      <Filter>TimeEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="ReverseTimeEntity.cpp">
+      <Filter>TimeEntities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeEntity.h">
@@ -38,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="ITimeVariable.h">
       <Filter>TimeVariable</Filter>
+    </ClInclude>
+    <ClInclude Include="ReverseTimeEntity.h">
+      <Filter>TimeEntities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

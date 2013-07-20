@@ -4,11 +4,13 @@
 #include "TimeEntity.h"
 #include "ITimeVariable.h"
 
+#include "NormalTimeEntity.h"
+
 namespace FG
 {
 	TimeObject::TimeObject() : paused(false), startTime(0)
 	{
-
+		timeEntities.push_back(new NormalTimeEntity);
 	}
 	TimeObject::~TimeObject()
 	{
@@ -16,6 +18,8 @@ namespace FG
 		{
 			delete it;
 		}
+
+		timeEntities.clear();
 	}
 
 	void TimeObject::StartTimer(long startTime)
@@ -36,9 +40,9 @@ namespace FG
 	}
 	void TimeObject::Update(long currentTime)
 	{
-		for(ITimeVariable* var : timeVariables)
+		for(TimeEntity* entity : timeEntities)
 		{
-			var->Update(currentTime);
+			entity->Update(currentTime, this);
 		}
 	}
 
@@ -50,16 +54,39 @@ namespace FG
 		}
 	}
 
-	void TimeObject::AddEntity(TimeEntity* entity)
+	void TimeObject::RegisterTimeEntity(long currentTime, TimeEntity* entity)
 	{
+		entity->OnRegister(currentTime, this);
 		timeEntities.push_back(entity);
+	}
+	void TimeObject::UnregisterTimeEntity(long currentTime, TimeEntity* entity)
+	{
+		for(auto it = timeEntities.begin(); it != timeEntities.end(); ++it)
+		{
+			if(*it == entity)
+			{
+				entity->OnUnregister(currentTime, this);
+				timeEntities.erase(it);
+				return;
+			}
+		}
+	}
+	void TimeObject::UnregisterAllTimeEntities(long currentTime)
+	{
+		for(auto* entity : timeEntities)
+		{
+			entity->OnUnregister(currentTime, this);
+			delete entity;
+		}
+
+		timeEntities.clear();
 	}
 
 	void TimeObject::RegisterTimeVariable(ITimeVariable* variable)
 	{
 		timeVariables.push_back(variable);
 	}
-	void TimeObject::UnRegisterTimeVariable(ITimeVariable* variable)
+	void TimeObject::UnregisterTimeVariable(ITimeVariable* variable)
 	{
 		for(auto it = timeVariables.begin(); it != timeVariables.end(); ++it)
 		{
@@ -69,6 +96,10 @@ namespace FG
 				return;
 			}
 		}
+	}
+	void TimeObject::UnregisterAllTimeVariables()
+	{
+		timeVariables.clear();
 	}
 
 	const std::vector<ITimeVariable*> TimeObject::GetTimeVariables() const

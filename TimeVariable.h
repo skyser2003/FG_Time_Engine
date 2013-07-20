@@ -30,20 +30,20 @@ namespace FG
 		{
 
 		}
-		void Update(long currentTime) override
+		void SetToTime(long wantedTime) override
+		{
+			value = GetValue(wantedTime);
+		}
+		void SaveCurrentValue(long wantedTime) override
 		{
 			if(timeCapsule.size() == 0)
 			{
-				timeCapsule.insert(std::make_pair(currentTime, value));
+				timeCapsule.insert(std::make_pair(wantedTime, value));
 			}
 			else if(value != timeCapsule.rbegin()->second)
 			{
-				timeCapsule.insert(std::make_pair(currentTime, value));
+				timeCapsule.insert(std::make_pair(wantedTime, value));
 			}
-		}
-		void SetToTime(long wantedTime)
-		{
-			value = GetValue(wantedTime);
 		}
 
 		T GetValue(long wantedTime) const
@@ -61,8 +61,24 @@ namespace FG
 				}
 			}
 
-			// If no time has passed or wantedTime isn't valid
+			// If wantedTime is later than last saved time
+			if(timeCapsule.size() != 0)
+			{
+				return timeCapsule.rbegin()->second;
+			}
+
+			// If there is no value saved yet
 			return value;
+		}
+		T GetCurrentValue() const
+		{
+			return value;
+		}
+
+		T& operator=(T value)
+		{
+			this->value = value;
+			return this->value;
 		}
 
 		T& operator*()

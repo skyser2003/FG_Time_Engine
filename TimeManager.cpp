@@ -5,7 +5,7 @@
 
 namespace FG
 {
-	TimeManager::TimeManager() : currentTime(0) {}
+	TimeManager::TimeManager() : currentTime(0), dt(0) {}
 
 	void TimeManager::StartTimer()
 	{
@@ -21,9 +21,10 @@ namespace FG
 			object->EndTimer();
 		}
 	}
-	void TimeManager::Update(int dt)
+	void TimeManager::Update(long currentTime)
 	{
-		currentTime += dt;
+		dt = currentTime - this->currentTime;
+		this->currentTime = currentTime;
 
 		for(auto* object : timeObjects)
 		{

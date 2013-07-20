@@ -19,10 +19,13 @@ namespace FG
 
 		void SetToTime(long wantedTime);
 
-		void AddEntity(TimeEntity* entity);
+		void RegisterTimeEntity(long currentTime, TimeEntity* entity);
+		void UnregisterTimeEntity(long currentTime, TimeEntity* entity);
+		void UnregisterAllTimeEntities(long currentTime);
 
 		void RegisterTimeVariable(ITimeVariable* variable);
-		void UnRegisterTimeVariable(ITimeVariable* variable);
+		void UnregisterTimeVariable(ITimeVariable* variable);
+		void UnregisterAllTimeVariables();
 
 		const std::vector<ITimeVariable*> GetTimeVariables() const;
 		long GetStartTime() const;

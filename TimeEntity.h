@@ -7,7 +7,11 @@ namespace FG
 	class TimeEntity
 	{
 	public:
-		virtual void Update(int dt, TimeObject* object);
+		virtual ~TimeEntity() {}
+
+		virtual void OnRegister(long currentTime, TimeObject* object) {};
+		virtual void OnUnregister(long currentTime, TimeObject* object) {};
+		virtual void Update(long currentTime, TimeObject* object) = 0;
 	private:
 	};
 }

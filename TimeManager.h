@@ -14,7 +14,7 @@ namespace FG
 
 		void StartTimer();
 		void EndTimer();
-		void Update(int dt);
+		void Update(long currentTime);
 
 		void RegisterTimeObject(TimeObject* object);
 		void UnregisterTimeObject(TimeObject* object);
@@ -23,6 +23,7 @@ namespace FG
 		long GetTime() const;
 	private:
 		long currentTime;
+		int dt;
 		std::vector<TimeObject*> timeObjects;
 	};
 }
