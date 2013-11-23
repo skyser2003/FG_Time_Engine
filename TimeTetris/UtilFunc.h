@@ -1,0 +1,1 @@
+int __cdecl color_printf(WORD wAttributes, const char* _Format, ...);
