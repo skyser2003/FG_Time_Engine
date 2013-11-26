@@ -19,6 +19,9 @@
     <Filter Include="Util">
       <UniqueIdentifier>{585a5a6f-bbcd-45f4-a133-1fb504a48b63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stdafx">
+      <UniqueIdentifier>{5a134dde-9a21-4137-8944-0f5eb934f649}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
@@ -36,6 +39,9 @@
     <ClInclude Include="UtilFunc.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
@@ -52,6 +58,12 @@
     </ClCompile>
     <ClCompile Include="UtilFunc.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDraw.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

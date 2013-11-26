@@ -1,7 +1,4 @@
-#include <iostream>
-#include <windows.h>
-#include <conio.h>
-using namespace std;
+#include "stdafx.h"
 
 #include "Game.h"
 #include "Map.h"
@@ -12,12 +9,15 @@ using namespace std;
 
 using namespace FG;
 
-int main()
+int APIENTRY WinMain(_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPTSTR    lpCmdLine,
+	_In_ int       nCmdShow)
 {
 	// Actual game
 	Game game;
 
-	game.Initialize();
+	game.Initialize(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 	game.Run();
 	game.Destroy();
 

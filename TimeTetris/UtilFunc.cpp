@@ -1,5 +1,4 @@
-#include <Windows.h>
-#include <stdio.h>
+#include "stdafx.h"
 
 int __cdecl color_printf(WORD wAttributes, const char* _Format, ...)
 {

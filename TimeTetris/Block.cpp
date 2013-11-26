@@ -1,7 +1,5 @@
+#include "stdafx.h"
 #include "Block.h"
-
-#include <cmath>
-#include <random>
 
 #define M_PI       3.14159265358979323846
 

@@ -1,9 +1,7 @@
+#include "stdafx.h"
 #include "Map.h"
 
 #include "Block.h"
-#include <iostream>
-#include <windows.h>
-
 #include "UtilFunc.h"
 using namespace std;
 

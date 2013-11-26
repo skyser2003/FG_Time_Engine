@@ -11,9 +11,16 @@ class Map;
 class Block;
 class Point;
 
+class GraphicsClass;
+class TextureClass;
+class VertexShader;
+class PixelShader;
+class ModelClass;
+
 namespace FG
 {
 	class TimeManager;
+	class Window;
 }
 
 class Game
@@ -32,13 +39,21 @@ public:
 	typedef bool (Game::*funcPointer)(void);
 	Game();
 
-	void Initialize();
+	void Initialize(_In_ HINSTANCE hInstance,
+		_In_opt_ HINSTANCE hPrevInstance,
+		_In_ LPTSTR    lpCmdLine,
+		_In_ int       nCmdShow);
 	void Destroy();
 
 	void Run();
 private:
 	template <int MODE, int END_MODE>
 	void InitRunFunctions();
+	void InitializeGraphics(_In_ HINSTANCE hInstance,
+		_In_opt_ HINSTANCE hPrevInstance,
+		_In_ LPTSTR    lpCmdLine,
+		_In_ int       nCmdShow);
+	void DestroyGraphics();
 
 	template <int MODE>
 	bool Run();
@@ -71,4 +86,12 @@ private:
 	BLOCK_MODE mode;
 
 	std::vector<funcPointer> runFunctions;
+
+	// Graphis
+	std::shared_ptr<FG::Window> mWindow;
+	GraphicsClass* mGraphics;
+	TextureClass* mTexture;
+	VertexShader* mVS;
+	PixelShader* mPS;
+	ModelClass* mModel;
 };
