@@ -21,9 +21,5 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance,
 	game.Run();
 	game.Destroy();
 
-	system("cls");
-	printf("Game End!");
-
-	system("pause");
 	return 0;
 }
