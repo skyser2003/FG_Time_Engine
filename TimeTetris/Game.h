@@ -21,6 +21,7 @@ namespace FG
 {
 	class TimeManager;
 	class Window;
+	class KeyboardInput;
 }
 
 class Game
@@ -47,7 +48,7 @@ public:
 
 	void Run();
 private:
-	template <int MODE, int END_MODE>
+	template <int MODE>
 	void InitRunFunctions();
 	void InitializeGraphics(_In_ HINSTANCE hInstance,
 		_In_opt_ HINSTANCE hPrevInstance,
@@ -95,4 +96,6 @@ private:
 	VertexShader* mVS;
 	PixelShader* mPS;
 	ModelClass* mModel;
+
+	FG::KeyboardInput* mKeyboard;
 };

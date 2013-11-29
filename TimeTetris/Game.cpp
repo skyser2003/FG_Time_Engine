@@ -6,25 +6,26 @@
 #include "Point.h"
 
 #include "TimeManager.h"
-#include "UtilFunc.h"
+#include "KeyboardInput.h"
 
 #include "NormalTimeEntity.h"
 #include "ReverseTimeEntity.h"
+#include "Window.h"
 
 Game::Game()
 {
-	InitRunFunctions<BLOCK_START, BLOCK_END>();
+	InitRunFunctions<BLOCK_START>();
 }
-template <int MODE, int END_MODE>
+template <int MODE>
 void Game::InitRunFunctions()
 {
 	runFunctions.push_back(&Game::Run<MODE>);
 
-	InitRunFunctions<MODE+1, END_MODE>();
+	InitRunFunctions<MODE+1>();
 }
 
 template <>
-void Game::InitRunFunctions<Game::BLOCK_END, Game::BLOCK_END>()
+void Game::InitRunFunctions<Game::BLOCK_END>()
 {
 }
 void Game::Initialize(_In_ HINSTANCE hInstance,
@@ -34,6 +35,9 @@ void Game::Initialize(_In_ HINSTANCE hInstance,
 
 {
 	InitializeGraphics(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+
+	mKeyboard = new FG::KeyboardInput;
+	mWindow->RegisterInput(mKeyboard);
 
 	map = new Map;
 	map->Initialize();
