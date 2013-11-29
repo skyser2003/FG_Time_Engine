@@ -74,6 +74,7 @@ private:
 	void DeleteCurrentBlock();
 
 	void Draw();
+	void DrawBlock(int x, int y, D3DXVECTOR4 outerColo, D3DXVECTOR4 innerColor);
 
 	Map* map;
 	std::array<FG::TimeVariable<Point>, 4> oldBodies;

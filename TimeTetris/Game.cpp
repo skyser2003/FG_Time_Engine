@@ -91,7 +91,6 @@ bool Game::Run<Game::BLOCK_NORMAL>()
 	if(cooltime <= 0)
 	{
 		BlockMoveDown();
-		Draw();
 		cooltime = 1000;
 
 		if(currentBlock == nullptr)
@@ -257,27 +256,26 @@ void Game::Run()
 {
 	bool running = true;
 	int keyInput = -1;
-	float drawCoolTime = 0.0f;
 
 	past = timeGetTime();
 	timeManager->StartTimer();
 
-	while(running)
+	MSG msg;
+
+	do
 	{
-		drawCoolTime -= (timeGetTime() - past);
-
-		running = (this->*runFunctions[mode])();
-
-		if(currentBlock && drawCoolTime <= 0.0f)
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
-			drawCoolTime = 60;
-			Draw();
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 		}
-	}
+
+		Draw();
+		running = (this->*runFunctions[mode])();
+	} while (running && msg.message != WM_QUIT);
 
 	timeManager->EndTimer();
 }
-
 
 void Game::UpdateTimeManager(long pastTime, long currentTime)
 {
