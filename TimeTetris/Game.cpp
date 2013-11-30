@@ -72,7 +72,6 @@ bool Game::Run<Game::BLOCK_START>()
 template <>
 bool Game::Run<Game::BLOCK_NORMAL>()
 {
-	int keyInput;
 	bool running = true;
 
 	DWORD now = timeGetTime();
@@ -108,100 +107,94 @@ bool Game::Run<Game::BLOCK_NORMAL>()
 		oldBodies = currentBlock->GetBodies();
 	}
 
-	if(_kbhit())
+	for (int key : mKeyboard->GetDownKeys())
 	{
-		keyInput = _getch();
-	}
-	else
-	{
-		keyInput = -1;
-	}
-
-	switch(keyInput)
-	{
-	case 49: // 1
+		switch (key)
 		{
-			if(currentBlock)
-			{
-				currentBlock->UnregisterAllTimeEntities(timeManager->GetTime());
-				currentBlock->RegisterTimeEntity(timeManager->GetTime(), new FG::NormalTimeEntity);
-
-				mode = BLOCK_NORMAL;
-			}
-		}
-		break;
-	case 50: // 2
+		case 49: // 1
 		{
-			if(currentBlock)
-			{
-				currentBlock->UnregisterAllTimeEntities(timeManager->GetTime());
-				currentBlock->RegisterTimeEntity(timeManager->GetTime(), new FG::ReverseTimeEntity);
+					 if (currentBlock)
+					 {
+						 currentBlock->UnregisterAllTimeEntities(timeManager->GetTime());
+						 currentBlock->RegisterTimeEntity(timeManager->GetTime(), new FG::NormalTimeEntity);
 
-				mode = BLOCK_REVERSE;
-			}
+						 mode = BLOCK_NORMAL;
+					 }
 		}
-		break;
-	case 51: // 3
+			break;
+		case 50: // 2
+		{
+					 if (currentBlock)
+					 {
+						 currentBlock->UnregisterAllTimeEntities(timeManager->GetTime());
+						 currentBlock->RegisterTimeEntity(timeManager->GetTime(), new FG::ReverseTimeEntity);
+
+						 mode = BLOCK_REVERSE;
+					 }
+		}
+			break;
+		case 51: // 3
 		{
 
 		}
-		break;
-	case 87: // w & W
-	case 119:
+			break;
+		case 87: // w & W
+		case 119:
 		{
-			BlockRotateRight();
+					BlockRotateRight();
 		}
-		break;
-	case 65: // a & A
-	case 97:
+			break;
+		case 65: // a & A
+		case 97:
 		{
-			BlockMoveLeft();
+				   BlockMoveLeft();
 		}
-		break;
-	case 68:
-	case 100: // d & D
+			break;
+		case 68:
+		case 100: // d & D
 		{
-			BlockMoveRight();
+					  BlockMoveRight();
 		}
-		break;
-	case 83: // s & S
-	case 115:
+			break;
+		case 83: // s & S
+		case 115:
 		{
-			BlockMoveDown();
+					BlockMoveDown();
 		}
-		break;
-	case 0x20: // Space
+			break;
+		case 0x20: // Space
 		{
-			BlockMoveAllDown();
+					   BlockMoveAllDown();
 		}
-		break;
-	case 81: // q & Q
-	case 113:
+			break;
+		case 81: // q & Q
+		case 113:
 		{
-			running = false;
+					running = false;
 		}
-		break;
-	case 69: // e & E
-	case 101:
+			break;
+		case 69: // e & E
+		case 101:
 		{
-			BlockTimeSleep(timeManager->GetTime() - 1000);
+					BlockTimeSleep(timeManager->GetTime() - 1000);
 		}
-		break;
-	case 70: // f & F
-	case 102:
-		{
-
-		}
-		break;
-	case -1: // no key input
-		{
-			// nothing
-		}
-	default:
+			break;
+		case 70: // f & F
+		case 102:
 		{
 
 		}
-		break;
+			break;
+		case -1: // no key input
+		{
+					 // nothing
+		}
+		default:
+		{
+
+		}
+			break;
+		}
 	}
 
 	return running;
@@ -209,7 +202,6 @@ bool Game::Run<Game::BLOCK_NORMAL>()
 template <>
 bool Game::Run<Game::BLOCK_REVERSE>()
 {
-	int keyInput;
 	bool running = true;
 
 	DWORD now = timeGetTime();
@@ -218,26 +210,19 @@ bool Game::Run<Game::BLOCK_REVERSE>()
 
 	UpdateTimeManager(past, now);
 
-	if(_kbhit())
+	for (int key : mKeyboard->GetDownKeys())
 	{
-		keyInput = _getch();
-	}
-	else
-	{
-		keyInput = -1;
-	}
-
-	switch(keyInput)
-	{
-	case 81: // q & Q
-	case 113:
+		switch (key)
+		{
+		case 81: // q & Q
+		case 113:
 		{
 			running = false;
 		}
-		break;
-	case 49: // 1
+			break;
+		case 49: // 1
 		{
-			if(currentBlock)
+			if (currentBlock)
 			{
 				currentBlock->UnregisterAllTimeEntities(timeManager->GetTime());
 				currentBlock->RegisterTimeEntity(timeManager->GetTime(), new FG::NormalTimeEntity);
@@ -245,13 +230,14 @@ bool Game::Run<Game::BLOCK_REVERSE>()
 				mode = BLOCK_NORMAL;
 			}
 		}
-		break;
-	case -1:
-	default:
+			break;
+		case -1:
+		default:
 		{
 
 		}
-		break;
+			break;
+		}
 	}
 
 	return running;
@@ -268,6 +254,7 @@ void Game::Run()
 
 	do
 	{
+		mKeyboard->Start();
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -276,6 +263,7 @@ void Game::Run()
 
 		Draw();
 		running = (this->*runFunctions[mode])();
+		mKeyboard->End();
 	} while (running && msg.message != WM_QUIT);
 
 	timeManager->EndTimer();
