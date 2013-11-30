@@ -137,10 +137,9 @@ void Game::Draw()
 		}
 		for (int i = 0; i < 4; ++i)
 		{
-			DrawBlock(currentBodies[i]->x, currentBodies[i]->y, { 0, 0, 0, 1 }, { 0, 0, 0, 1 });
+			DrawBlock(currentBodies[i]->x, currentBodies[i]->y, { 0.2f, 0.2f, 0.2f, 1 }, { 0, 0, 0, 1 });
 		}
 	}
-
 
 	mPS->EndRender();
 	mVS->EndRender();
