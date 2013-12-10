@@ -21,6 +21,10 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	_In_ LPTSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
+	HRESULT result;
+	std::string vsFileName = "C:/Google Drive/Projects/Shaders/vstexture.hlsl";
+	std::string psFileName = "C:/Google Drive/Projects/Shaders/pstexture.hlsl";
+
 	FG::WindowManager::GetInstance().Initialize(hInstance, nCmdShow, hPrevInstance, lpCmdLine);
 	mWindow = FG::WindowManager::GetInstance().CreateWindowInstance();
 	mGraphics = &mWindow->GetGraphics();
@@ -34,7 +38,12 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	mVS->Initialize();
 	mVS->SetDevice(mGraphics->GetDevice());
 	mVS->SetDeviceContext(mGraphics->GetDeviceContext());
-	mVS->CompileShader("C:/Projects/Shaders/vstexture.hlsl", "TextureVertexShader");
+	result = mVS->CompileShader(vsFileName.c_str(), "VertexTextureMain");
+	if (FAILED(result))
+	{
+		MessageBox(mGraphics->GetHwnd(), "Error compiling shader.  Check shader-error.txt for message.", vsFileName.c_str(), MB_OK);
+		return;
+	}
 
 	mVS->SetupShaderBufferInputType("POSITION");
 	mVS->SetupShaderBufferInputType("TEXCOORD");
@@ -45,7 +54,13 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	mPS->Initialize();
 	mPS->SetDevice(mGraphics->GetDevice());
 	mPS->SetDeviceContext(mGraphics->GetDeviceContext());
-	mPS->CompileShader("C:/Projects/Shaders/pscolor.hlsl", "ColorPixelShader");
+	result = mPS->CompileShader(psFileName.c_str(), "PixelTextureMain");
+	if (FAILED(result))
+	{
+		MessageBox(mGraphics->GetHwnd(), "Error compiling shader.  Check shader-error.txt for message.", vsFileName.c_str(), MB_OK);
+		return;
+	}
+
 	mPS->CreateSamplerState();
 
 	mVS->EquipShader();
@@ -176,6 +191,8 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 	};
 
 	D3DXVECTOR3 sqPosition[numVertices];
+	
+	// Outer square
 	memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));
 
 	for (int i = 0; i < numVertices; ++i)
@@ -192,7 +209,6 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 
 	mModel->SetRGBA(outerColor);
 	mModel->SetVertex(mGraphics->GetDevice(), numVertices, sqPosition);
-	//mModel->SetVertex(mGraphics->GetDevice(), numVertices, sqPosition, texPositions);
 	mModel->Render(mGraphics->GetDeviceContext());
 	mModel->Shutdown();
 
