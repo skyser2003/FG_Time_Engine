@@ -22,6 +22,9 @@
     <Filter Include="Stdafx">
       <UniqueIdentifier>{5a134dde-9a21-4137-8944-0f5eb934f649}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{ad7ea76b-d4bc-4b72-8d7e-4e0b6e6c3ae2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
@@ -65,5 +68,13 @@
     <ClCompile Include="GameDraw.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\Shaders\vstexture.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\Shaders\pstexture.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
