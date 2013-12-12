@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "Chrono Warrior.h"
 
+#include "Game.h"
+
 #define MAX_LOADSTRING 100
 
 // Global Variables:
