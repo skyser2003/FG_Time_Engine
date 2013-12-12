@@ -18,6 +18,9 @@
 *.lastbuildstate
 *.ipch
 *.opensdf
-Debug/*
-Release/*
+**/Debug/*
+**/Release/*
+**/x64/*
 *.sdf
+*.user
+*.suo
