@@ -67,12 +67,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\;..\..\FG_Time_Engine;..\..\FG_Window_Library;..\..\FG_DX_Engine;..\..\FG_Input_Library;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\;..\..\FG_Time_Engine;..\..\FG_Window_Library;..\..\FG_DX_Engine;..\..\FG_Input_Library;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\;..\..\FG_Time_Engine;..\..\FG_Window_Library;..\..\FG_DX_Engine;..\..\FG_Input_Library;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>..\;..\..\FG_Time_Engine;..\..\FG_Window_Library;..\..\FG_DX_Engine;..\..\FG_Input_Library;$(IncludePath)</IncludePath>
