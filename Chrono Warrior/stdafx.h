@@ -22,5 +22,8 @@
 #include <memory.h>
 #include <tchar.h>
 
+// STL
+#include <memory>
+
 
 // TODO: reference additional headers your program requires here
