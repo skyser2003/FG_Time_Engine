@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Mode.h"
+
 namespace FG
 {
 	class Window;
@@ -10,6 +12,8 @@ class GraphicsClass;
 
 namespace CW
 {
+	class Mode;
+
 	class Game
 	{
 	public:
@@ -24,5 +28,7 @@ namespace CW
 		std::shared_ptr<FG::Window> mWindow;
 		GraphicsClass* mGraphics;
 		std::shared_ptr<FG::KeyboardInput> mKeyboard;
+
+		std::unique_ptr<Mode> mCurMode;
 	};
 }

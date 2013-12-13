@@ -29,5 +29,4 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	game.Destroy();
 
 	return 0;
-	//return (int) msg.wParam;
 }

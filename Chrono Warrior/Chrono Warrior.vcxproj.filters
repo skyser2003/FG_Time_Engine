@@ -1,38 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{8b73d29c-be24-478c-a11d-561413a6eae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mode">
+      <UniqueIdentifier>{e25005e1-fe18-4017-ba2c-d01930762cd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mode\StartMenuMode">
+      <UniqueIdentifier>{580115f9-6830-4c49-a826-e74ebb51a77d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mode\GameMode">
+      <UniqueIdentifier>{7a01882f-4b32-42c2-be3c-299f4bbf93e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mode\Mode">
+      <UniqueIdentifier>{62a5cb1b-a550-40e3-bb60-3ea23edf382a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{56de4c45-656a-4ae0-9057-da385bedb791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{ac8ab45a-4d03-4b28-bec0-1bc291f82371}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Mode.h">
+      <Filter>Mode\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Mode\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Chrono Warrior.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Mode.cpp">
+      <Filter>Mode\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Mode\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Chrono Warrior.cpp">
+      <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
