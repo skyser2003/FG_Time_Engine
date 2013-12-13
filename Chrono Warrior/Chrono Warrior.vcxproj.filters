@@ -22,6 +22,24 @@
     <Filter Include="Main">
       <UniqueIdentifier>{ac8ab45a-4d03-4b28-bec0-1bc291f82371}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logic\Map">
+      <UniqueIdentifier>{2d35d9fc-52bc-44e9-8604-2a8cea951f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\FieldObject">
+      <UniqueIdentifier>{14ba112e-4d64-44b5-bcc0-b52b36513b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Tile">
+      <UniqueIdentifier>{af478440-3a72-4e88-9ce8-8744b5c9d274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\FieldObject\FieldObject">
+      <UniqueIdentifier>{99e69d59-ba6d-4854-808e-0070aaaabdcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\FieldObject\FieldUnit">
+      <UniqueIdentifier>{f79d6c37-6c74-4bfe-b637-6332fda914da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Position">
+      <UniqueIdentifier>{12aca02a-0ba9-432e-8648-bfdeb0a060fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,6 +57,21 @@
     <ClInclude Include="stdafx.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Logic\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldObject.h">
+      <Filter>Logic\FieldObject\FieldObject</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldUnit.h">
+      <Filter>Logic\FieldObject\FieldUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Logic\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Logic\Position</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -55,6 +88,21 @@
     </ClCompile>
     <ClCompile Include="Chrono Warrior.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Logic\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldObject.cpp">
+      <Filter>Logic\FieldObject\FieldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldUnit.cpp">
+      <Filter>Logic\FieldObject\FieldUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Logic\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>Logic\Position</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
