@@ -104,5 +104,8 @@
     <ClCompile Include="Position.cpp">
       <Filter>Logic\Position</Filter>
     </ClCompile>
+    <ClCompile Include="GameModeDraw.cpp">
+      <Filter>Mode\GameMode</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
