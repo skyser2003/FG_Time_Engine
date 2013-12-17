@@ -7,6 +7,7 @@
 #include "modelclass.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+#include "TextureManager.h"
 
 #include "WindowManager.h"
 #include "Window.h"
@@ -16,6 +17,8 @@
 #include "TimeManager.h"
 #include "UtilFunc.h"
 
+#include "DxCanvas.h"
+
 void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPTSTR    lpCmdLine,
@@ -23,25 +26,23 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 {
 	HRESULT result;
 	std::string vsFileName = "C:/Google Drive/Projects/Shaders/vstexture.hlsl";
-	std::string psFileName = "C:/Google Drive/Projects/Shaders/pstexture.hlsl";
+	std::string psTextureFileName = "C:/Google Drive/Projects/Shaders/pstexture.hlsl";
+	std::string psColorFileName = "C:/Google Drive/Projects/Shaders/pscolor.hlsl";
 
 	FG::WindowManager::GetInstance().Initialize(hInstance, nCmdShow, hPrevInstance, lpCmdLine);
 	mWindow = FG::WindowManager::GetInstance().CreateWindowInstance();
-	mGraphics = &mWindow->GetGraphics();
 
-	mVS = new VertexShader;
-	mPS = new PixelShader;
-	mModel = new ModelClass;
-	mTexture = new TextureClass;
+	mCanvas = new DxCanvas;
+	mCanvas->Initialize(mWindow->GetHwnd(), 800, 600);
 
-	mGraphics->Initialize(800, 600, mWindow->GetHwnd());
-	mVS->Initialize();
-	mVS->SetDevice(mGraphics->GetDevice());
-	mVS->SetDeviceContext(mGraphics->GetDeviceContext());
+	mVS = mCanvas->CreateVertexShader();
+	mPSTexture = mCanvas->CreatePixelShader();
+	mPSColor = mCanvas->CreatePixelShader();
+
 	result = mVS->CompileShader(vsFileName.c_str(), "VertexTextureMain");
 	if (FAILED(result))
 	{
-		MessageBox(mGraphics->GetHwnd(), "Error compiling shader.  Check shader-error.txt for message.", vsFileName.c_str(), MB_OK);
+		MessageBox(mCanvas->GetGraphics()->GetHwnd(), "Error compiling shader.  Check shader-error.txt for message.", vsFileName.c_str(), MB_OK);
 		return;
 	}
 
@@ -51,45 +52,47 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	mVS->CreateShaderBufferDesc();
 	mVS->CreateCBufferDesc("matrix", sizeof(MatrixBufferType));
 
-	mPS->Initialize();
-	mPS->SetDevice(mGraphics->GetDevice());
-	mPS->SetDeviceContext(mGraphics->GetDeviceContext());
-	result = mPS->CompileShader(psFileName.c_str(), "PixelTextureMain");
+	result = mPSTexture->CompileShader(psTextureFileName.c_str(), "PixelTextureMain");
 	if (FAILED(result))
 	{
-		MessageBox(mGraphics->GetHwnd(), "Error compiling shader.  Check shader-error.txt for message.", vsFileName.c_str(), MB_OK);
+		MessageBox(mCanvas->GetHwnd(), "Error compiling shader.  Check shader-error.txt for message.", psTextureFileName.c_str(), MB_OK);
 		return;
 	}
 
-	mPS->CreateSamplerState();
+	mPSTexture->CreateSamplerState();
+
+	result = mPSColor->CompileShader(psColorFileName.c_str(), "PixelColorMain");
+	if (FAILED(result))
+	{
+		MessageBox(mCanvas->GetHwnd(), "Error compiling shader.  Check shader-error.txt for message.", psColorFileName.c_str(), MB_OK);
+		return;
+	}
+
+	mPSColor->CreateSamplerState();
 
 	mVS->EquipShader();
-	mPS->EquipShader();
+
+	mBlock.reset(new TextureClass);
+	mBlock->Initialize(mCanvas->GetDevice(), "C:/Google Drive/Projects/FGEngine/FG_Time_Engine/TimeTetris/square.jpg");
+
+	mPSTexture->SetTexture(mBlock->GetTexture());
 }
 void Game::DestroyGraphics()
 {
-	mVS->Destroy();
-	mPS->Destroy();
-	mTexture->Shutdown();
-	mModel->Shutdown();
-
-	delete mVS;
-	delete mPS;
-	delete mTexture;
-	delete mModel;
+	delete mCanvas;
 }
 
 void Game::Draw()
 {
-	mGraphics->InitDraw();
+	mCanvas->BeginRender();
 
-	mVS->BeginRender();
-	mPS->BeginRender();
+	mCanvas->EquipVertexShader(mVS);
+	mCanvas->EquipPixelShader(mPSColor);
 
 	MatrixBufferType matrixBuffer;
-	D3DXMatrixTranspose(&matrixBuffer.world, &mGraphics->GetWorldMatrix());
-	D3DXMatrixTranspose(&matrixBuffer.view, &mGraphics->GetViewMatrix());
-	D3DXMatrixTranspose(&matrixBuffer.projection, &mGraphics->GetProjectionMatrix());
+	D3DXMatrixTranspose(&matrixBuffer.world, &mCanvas->GetGraphics()->GetWorldMatrix());
+	D3DXMatrixTranspose(&matrixBuffer.view, &mCanvas->GetGraphics()->GetViewMatrix());
+	D3DXMatrixTranspose(&matrixBuffer.projection, &mCanvas->GetGraphics()->GetProjectionMatrix());
 
 	mVS->SetCBufferDesc("matrix", &matrixBuffer, sizeof(matrixBuffer));
 
@@ -110,7 +113,7 @@ void Game::Draw()
 			case 1: // wall or block deposit
 			{
 				innerColor = { 0, 0, 0, 1 };
-				outerColor = { 0, 0, 0, 1 };
+				outerColor = { 0.2f, 0.2f, 0.2f, 1 };
 			}
 				break;
 			default:
@@ -144,21 +147,24 @@ void Game::Draw()
 
 		currentBlock->SetBodies(currentCenter, currentBodies);
 
+		// Past position
+		mCanvas->EquipPixelShader(mPSTexture);
 		for (int i = 0; i < 4; ++i)
 		{
 			int x = pastPoints[i].x;
 			int y = pastPoints[i].y;
 			DrawBlock(x, y, { 1, 1, 0, 1, }, { 1, 0, 0, 1 });
 		}
+		
+		// Current position
+		mCanvas->EquipPixelShader(mPSColor);
 		for (int i = 0; i < 4; ++i)
 		{
 			DrawBlock(currentBodies[i]->x, currentBodies[i]->y, { 0.2f, 0.2f, 0.2f, 1 }, { 0, 0, 0, 1 });
 		}
 	}
 
-	mPS->EndRender();
-	mVS->EndRender();
-	mGraphics->EndDraw();
+	mCanvas->EndRender();
 }
 
 void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColor)
@@ -171,6 +177,10 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 	const int numVertices = 6;
 	const float edgeRatio = 0.1f;
 
+	RenderInfo outerInfo, innerInfo;
+	outerInfo.noVertices = numVertices;
+	innerInfo.noVertices = numVertices;
+
 	const D3DXVECTOR3 positions[numVertices] =
 	{
 		{ 0, 0, 0 },
@@ -182,8 +192,8 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 	};
 	const D3DXVECTOR2 texPositions[numVertices] =
 	{
-		{ 0, 0 },
 		{ 0, 1 },
+		{ 0, 0 },
 		{ 1, 0 },
 		{ 1, 0 },
 		{ 1, 1 },
@@ -205,14 +215,14 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 
 		sqPosition[i][0] += leftMargin;
 		sqPosition[i][1] += bottomMargin;
+
+		outerInfo.position.push_back(sqPosition[i]);
+		outerInfo.texPosition.push_back(texPositions[i]);
 	}
 
-	mModel->SetRGBA(outerColor);
-	mModel->SetVertex(mGraphics->GetDevice(), numVertices, sqPosition);
-	mModel->Render(mGraphics->GetDeviceContext());
-	mModel->Shutdown();
-
-	mGraphics->GetDeviceContext()->DrawIndexed(mModel->GetIndexCount(), 0, 0);
+	outerInfo.color = outerColor;
+	mCanvas->AddRenderInfo(outerInfo);
+	mCanvas->Render();
 
 	// Inner square
 	memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));
@@ -230,12 +240,12 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 
 		sqPosition[i][0] += leftMargin;
 		sqPosition[i][1] += bottomMargin;
+
+		innerInfo.position.push_back(sqPosition[i]);
+		innerInfo.texPosition.push_back(texPositions[i]);
 	}
 
-	mModel->SetRGBA(innerColor);
-	mModel->SetVertex(mGraphics->GetDevice(), numVertices, sqPosition);
-	mModel->Render(mGraphics->GetDeviceContext());
-	mModel->Shutdown();
-
-	mGraphics->GetDeviceContext()->DrawIndexed(mModel->GetIndexCount(), 0, 0);
+	innerInfo.color = innerColor;
+	mCanvas->AddRenderInfo(innerInfo);
+	mCanvas->Render();
 }

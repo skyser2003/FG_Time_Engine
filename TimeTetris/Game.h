@@ -11,6 +11,7 @@ class Map;
 class Block;
 class Point;
 
+class DxCanvas;
 class GraphicsClass;
 class TextureClass;
 class VertexShader;
@@ -91,11 +92,10 @@ private:
 
 	// Graphis
 	std::shared_ptr<FG::Window> mWindow;
-	GraphicsClass* mGraphics;
-	TextureClass* mTexture;
-	VertexShader* mVS;
-	PixelShader* mPS;
-	ModelClass* mModel;
+	DxCanvas* mCanvas;
+	std::shared_ptr<VertexShader> mVS;
+	std::shared_ptr<PixelShader> mPSTexture, mPSColor;
+	std::shared_ptr<TextureClass> mBlock;
 
 	FG::KeyboardInput* mKeyboard;
 };
