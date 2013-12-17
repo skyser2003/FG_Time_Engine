@@ -15,5 +15,7 @@ namespace CW
 
 		virtual void Run() override;
 	private:
+		virtual void Update(float dt) override;
+		virtual void Draw(float dt) override;
 	};
 }

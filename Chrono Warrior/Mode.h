@@ -12,5 +12,7 @@ namespace CW
 
 		virtual void Run() = 0;
 	private:
+		virtual void Update(float dt) = 0;
+		virtual void Draw(float dt) = 0;
 	};
 }
