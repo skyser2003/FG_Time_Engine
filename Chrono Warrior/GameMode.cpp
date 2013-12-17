@@ -30,8 +30,4 @@ namespace CW
 	{
 
 	}
-	void GameMode::Draw(float dt)
-	{
-
-	}
 }
