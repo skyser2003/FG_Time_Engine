@@ -179,7 +179,12 @@ void Game::DrawBlock(int x, int y, const FG::VECTOR4& outerColor, const FG::VECT
 
 	FG::RenderInfo outerInfo, innerInfo;
 	outerInfo.noVertices = numVertices;
+	outerInfo.position.resize(numVertices);
+	outerInfo.texPosition.resize(numVertices);
+
 	innerInfo.noVertices = numVertices;
+	innerInfo.position.resize(numVertices);
+	innerInfo.texPosition.resize(numVertices);
 
 	const FG::VECTOR3 positions[numVertices] =
 	{
@@ -216,13 +221,12 @@ void Game::DrawBlock(int x, int y, const FG::VECTOR4& outerColor, const FG::VECT
 		sqPosition[i][0] += leftMargin;
 		sqPosition[i][1] += bottomMargin;
 
-		outerInfo.position.push_back(sqPosition[i]);
-		outerInfo.texPosition.push_back(texPositions[i]);
+		outerInfo.position[i] = sqPosition[i];
+		outerInfo.texPosition[i] = texPositions[i];
 	}
 
 	outerInfo.color = outerColor;
 	mCanvas->AddRenderInfo(outerInfo);
-	mCanvas->Render();
 
 	// Inner square
 	memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));
@@ -241,8 +245,8 @@ void Game::DrawBlock(int x, int y, const FG::VECTOR4& outerColor, const FG::VECT
 		sqPosition[i][0] += leftMargin;
 		sqPosition[i][1] += bottomMargin;
 
-		innerInfo.position.push_back(sqPosition[i]);
-		innerInfo.texPosition.push_back(texPositions[i]);
+		innerInfo.position[i] = sqPosition[i];
+		innerInfo.texPosition[i] = texPositions[i];
 	}
 
 	innerInfo.color = innerColor;
