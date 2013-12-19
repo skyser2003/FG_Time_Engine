@@ -99,7 +99,7 @@ void Game::Draw()
 	auto field = map->GetField();
 	for (int j = 0; j < 20; ++j)
 	{
-		D3DXVECTOR4 innerColor, outerColor;
+		FG::VECTOR4 innerColor, outerColor;
 		for (int i = 0; i < 10; ++i)
 		{
 			switch (field[i][j])
@@ -167,7 +167,7 @@ void Game::Draw()
 	mCanvas->EndRender();
 }
 
-void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColor)
+void Game::DrawBlock(int x, int y, const FG::VECTOR4& outerColor, const FG::VECTOR4& innerColor)
 {
 	int leftMargin = 50;
 	int bottomMargin = 50;
@@ -177,11 +177,11 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 	const int numVertices = 6;
 	const float edgeRatio = 0.1f;
 
-	RenderInfo outerInfo, innerInfo;
+	FG::RenderInfo outerInfo, innerInfo;
 	outerInfo.noVertices = numVertices;
 	innerInfo.noVertices = numVertices;
 
-	const D3DXVECTOR3 positions[numVertices] =
+	const FG::VECTOR3 positions[numVertices] =
 	{
 		{ 0, 0, 0 },
 		{ 0, 1, 0 },
@@ -190,7 +190,7 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 		{ 1, 0, 0 },
 		{ 0, 0, 0 }
 	};
-	const D3DXVECTOR2 texPositions[numVertices] =
+	const FG::VECTOR2 texPositions[numVertices] =
 	{
 		{ 0, 1 },
 		{ 0, 0 },
@@ -200,7 +200,7 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 		{ 0, 1 }
 	};
 
-	D3DXVECTOR3 sqPosition[numVertices];
+	FG::VECTOR3 sqPosition[numVertices];
 	
 	// Outer square
 	memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));

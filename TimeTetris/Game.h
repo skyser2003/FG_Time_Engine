@@ -23,6 +23,8 @@ namespace FG
 	class TimeManager;
 	class Window;
 	class KeyboardInput;
+
+	class VECTOR4;
 }
 
 class Game
@@ -76,7 +78,7 @@ private:
 	void DeleteCurrentBlock();
 
 	void Draw();
-	void DrawBlock(int x, int y, D3DXVECTOR4 outerColo, D3DXVECTOR4 innerColor);
+	void DrawBlock(int x, int y, const FG::VECTOR4& outerColor, const FG::VECTOR4& innerColor);
 
 	Map* map;
 	std::array<FG::TimeVariable<Point>, 4> oldBodies;
