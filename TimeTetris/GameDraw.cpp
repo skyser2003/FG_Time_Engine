@@ -177,7 +177,7 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 	const int numVertices = 6;
 	const float edgeRatio = 0.1f;
 
-	RenderInfo outerInfo, innerInfo;
+	FG::RenderInfo outerInfo, innerInfo;
 	outerInfo.noVertices = numVertices;
 	outerInfo.position.resize(numVertices);
 	outerInfo.texPosition.resize(numVertices);
