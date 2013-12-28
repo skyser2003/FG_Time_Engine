@@ -21,7 +21,7 @@ namespace CW
 
 		// Logic
 		mCurMode.reset(new GameMode); // Later change to StartMenuMode
-		mCurMode->Initialize();
+		mCurMode->Initialize(mWindow);
 	}
 	void Game::Destroy()
 	{

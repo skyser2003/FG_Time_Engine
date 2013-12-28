@@ -12,9 +12,10 @@ namespace CW
 
 	}
 
-	void GameMode::Initialize()
+	void GameMode::Initialize(const std::shared_ptr<FG::Window>& window)
 	{
-		Mode::Initialize();
+		Mode::Initialize(window);
+		InitializeGraphics();
 	}
 	void GameMode::Destroy()
 	{

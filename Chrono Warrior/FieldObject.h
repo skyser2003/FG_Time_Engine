@@ -13,6 +13,7 @@ namespace CW
 		virtual void Destroy();
 
 		void SetTile(const std::shared_ptr<Tile>& tile);
+		std::shared_ptr<Tile> GetTile() const { return mTile; }
 
 		int GetX() const;
 		int GetY() const;

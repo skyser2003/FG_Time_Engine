@@ -26,6 +26,7 @@
 #include <memory>
 #include <map>
 #include <vector>
+#include <functional>
 
 
 // TODO: reference additional headers your program requires here
