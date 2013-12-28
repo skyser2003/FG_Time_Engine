@@ -28,9 +28,9 @@ namespace CW
 
 	void GameMode::InitializeGraphics()
 	{
-		std::string vsFileName = "C:/Google Drive/Projects/Shaders/vstexture.hlsl";
-		std::string psTextureFileName = "C:/Google Drive/Projects/Shaders/pstexture.hlsl";
-		std::string psColorFileName = "C:/Google Drive/Projects/Shaders/pscolor.hlsl";
+		std::string vsFileName = "C:/Projects/Shaders/vstexture.hlsl";
+		std::string psTextureFileName = "C:/Projects/Shaders/pstexture.hlsl";
+		std::string psColorFileName = "C:/Projects/Shaders/pscolor.hlsl";
 
 		mCanvas = &GetWindow()->GetCanvas();
 

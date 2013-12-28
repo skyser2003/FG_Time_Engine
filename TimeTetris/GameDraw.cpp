@@ -25,9 +25,9 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	_In_ int       nCmdShow)
 {
 	HRESULT result;
-	std::string vsFileName = "C:/Google Drive/Projects/Shaders/vstexture.hlsl";
-	std::string psTextureFileName = "C:/Google Drive/Projects/Shaders/pstexture.hlsl";
-	std::string psColorFileName = "C:/Google Drive/Projects/Shaders/pscolor.hlsl";
+	std::string vsFileName = "C:/Projects/Shaders/vstexture.hlsl";
+	std::string psTextureFileName = "C:/Projects/Shaders/pstexture.hlsl";
+	std::string psColorFileName = "C:/Projects/Shaders/pscolor.hlsl";
 
 	FG::WindowManager::GetInstance().Initialize(hInstance, nCmdShow, hPrevInstance, lpCmdLine);
 	mWindow = FG::WindowManager::GetInstance().CreateWindowInstance();
@@ -73,7 +73,7 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	mVS->EquipShader();
 
 	mBlock.reset(new TextureClass);
-	mBlock->Initialize(mCanvas->GetDevice(), "C:/Google Drive/Projects/FGEngine/FG_Time_Engine/TimeTetris/square.jpg");
+	mBlock->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/TimeTetris/square.jpg");
 
 	mPSTexture->SetTexture(mBlock->GetTexture());
 }
