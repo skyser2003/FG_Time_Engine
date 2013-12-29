@@ -9,6 +9,12 @@ namespace CW
 	class Map final
 	{
 	public:
+		Map();
+		~Map();
+
+		void Initialize();
+		void Destroy();
+
 		std::shared_ptr<Tile> GetTile(int x, int y) const;
 		std::shared_ptr<Tile> GetTile(const Position& pos) const;
 

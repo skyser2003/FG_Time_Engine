@@ -5,6 +5,23 @@
 
 namespace CW
 {
+	Map::Map()
+	{
+	}
+	Map::~Map()
+	{
+
+	}
+
+	void Map::Initialize()
+	{
+		mTiles.insert(std::make_pair(Position(1, 0), std::shared_ptr<Tile>(new Tile)));
+	}
+	void Map::Destroy()
+	{
+		mTiles.clear();
+	}
+
 	std::shared_ptr<Tile> Map::GetTile(int x, int y) const
 	{
 		return GetTile(Position(x, y));

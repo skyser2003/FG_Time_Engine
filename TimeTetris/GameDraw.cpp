@@ -32,8 +32,7 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	FG::WindowManager::GetInstance().Initialize(hInstance, nCmdShow, hPrevInstance, lpCmdLine);
 	mWindow = FG::WindowManager::GetInstance().CreateWindowInstance();
 
-	mCanvas = new DxCanvas;
-	mCanvas->Initialize(mWindow->GetHwnd(), 800, 600);
+	mCanvas = &mWindow->GetCanvas();
 
 	mVS = mCanvas->CreateVertexShader();
 	mPSTexture = mCanvas->CreatePixelShader();
@@ -47,8 +46,8 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	}
 
 	mVS->SetupShaderBufferInputType("POSITION");
-	mVS->SetupShaderBufferInputType("TEXCOORD");
 	mVS->SetupShaderBufferInputType("COLOR");
+	mVS->SetupShaderBufferInputType("TEXCOORD");
 	mVS->CreateShaderBufferDesc();
 	mVS->CreateCBufferDesc("matrix", sizeof(MatrixBufferType));
 
@@ -69,8 +68,6 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	}
 
 	mPSColor->CreateSamplerState();
-
-	mVS->EquipShader();
 
 	mBlock.reset(new TextureClass);
 	mBlock->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/TimeTetris/square.jpg");
@@ -186,14 +183,14 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 	innerInfo.position.resize(numVertices);
 	innerInfo.texPosition.resize(numVertices);
 
-	const D3DXVECTOR3 positions[numVertices] =
+	const D3DXVECTOR4 positions[numVertices] =
 	{
-		{ 0, 0, 0 },
-		{ 0, 1, 0 },
-		{ 1, 1, 0 },
-		{ 1, 1, 0 },
-		{ 1, 0, 0 },
-		{ 0, 0, 0 }
+		{ 0, 0, 0, 0 },
+		{ 0, 1, 0, 0 },
+		{ 1, 1, 0, 0 },
+		{ 1, 1, 0, 0 },
+		{ 1, 0, 0, 0 },
+		{ 0, 0, 0, 0 }
 	};
 	const D3DXVECTOR2 texPositions[numVertices] =
 	{
@@ -205,7 +202,7 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 		{ 0, 1 }
 	};
 
-	D3DXVECTOR3 sqPosition[numVertices];
+	D3DXVECTOR4 sqPosition[numVertices];
 	
 	// Outer square
 	memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));

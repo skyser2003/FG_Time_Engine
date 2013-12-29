@@ -19,8 +19,8 @@ namespace CW
 
 		std::shared_ptr<FG::Window> GetWindow() const { return mWindow; }
 	private:
-		virtual void Update(float dt) = 0;
-		virtual void Draw(float dt) = 0;
+		virtual void Update(std::chrono::system_clock::duration dt) = 0;
+		virtual void Draw(std::chrono::system_clock::duration dt) = 0;
 
 		std::shared_ptr<FG::Window> mWindow;
 	};
