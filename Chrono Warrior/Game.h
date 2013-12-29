@@ -26,7 +26,6 @@ namespace CW
 		void Run();
 	private:
 		std::shared_ptr<FG::Window> mWindow;
-		GraphicsClass* mGraphics;
 		std::shared_ptr<FG::KeyboardInput> mKeyboard;
 
 		std::unique_ptr<Mode> mCurMode;

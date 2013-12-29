@@ -16,7 +16,6 @@ namespace CW
 		wm.Initialize(hInstance, nCmdShow, hPrevInstance, lpCmdLine);
 
 		mWindow = wm.CreateWindowInstance();
-		mGraphics = &mWindow->GetGraphics();
 		mKeyboard.reset(new FG::KeyboardInput);
 
 		// Logic
@@ -34,6 +33,13 @@ namespace CW
 
 	void Game::Run()
 	{
-		mCurMode->Run();
+		mWindow->RegisterMainFunction([&](FG::Window* window)
+		{
+			mCurMode->Run();
+
+			return 1;
+		});
+
+		mWindow->Run();
 	}
 }
