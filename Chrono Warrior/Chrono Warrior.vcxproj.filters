@@ -43,6 +43,12 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{7dcdc722-7dd5-417b-b3f3-99463510b12e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Extern">
+      <UniqueIdentifier>{a3864764-ae1b-44fd-a02a-b198da35cac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extern\tinyxml2">
+      <UniqueIdentifier>{185e6389-e586-44c7-9374-76ff2c91264b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -74,6 +80,9 @@
     </ClInclude>
     <ClInclude Include="Position.h">
       <Filter>Logic\Position</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Extern\tinyxml2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="GameModeDraw.cpp">
       <Filter>Mode\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Extern\tinyxml2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
