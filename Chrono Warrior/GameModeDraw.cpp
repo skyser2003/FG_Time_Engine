@@ -106,8 +106,8 @@ namespace CW
 		}
 
 		mVS->SetupShaderBufferInputType("POSITION");
-		mVS->SetupShaderBufferInputType("TEXCOORD");
 		mVS->SetupShaderBufferInputType("COLOR");
+		mVS->SetupShaderBufferInputType("TEXCOORD");
 		mVS->CreateShaderBufferDesc();
 		mVS->CreateCBufferDesc("matrix", sizeof(MatrixBufferType));
 
