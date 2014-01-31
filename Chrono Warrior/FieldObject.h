@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Position.h"
+
 namespace CW
 {
 	class Tile;
@@ -17,6 +19,7 @@ namespace CW
 
 		int GetX() const;
 		int GetY() const;
+		Position GetPosition() const;
 	private:
 		std::shared_ptr<Tile> mTile;
 	};

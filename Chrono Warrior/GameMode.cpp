@@ -7,6 +7,8 @@
 #include "KeyboardInput.h"
 #include "MouseInput.h"
 
+#include "FieldUnit.h"
+
 namespace CW
 {
 	GameMode::GameMode()
@@ -64,6 +66,10 @@ namespace CW
 
 		if (lButton == FG::MouseInput::BUTTON_DOWN)
 		{
+			std::shared_ptr<FieldUnit> unit(new FieldUnit);
+			unit->SetUnitType(FieldUnit::FU_CHRONO_MAGE);
+			unit->SetTile(mMap->GetTile(0, 0));
+			mMap->AddUnit(unit);
 		}
 
 		// Map update

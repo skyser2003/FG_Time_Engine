@@ -80,10 +80,12 @@ namespace CW
 		mLemon.reset(new TextureClass);
 		mApple.reset(new TextureClass);
 		mSoldier.reset(new TextureClass);
+		mMage.reset(new TextureClass);
 
 		mLemon->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/lemon.jpg");
 		mApple->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/apple.jpg");
 		mSoldier->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/scv.jpg");
+		mMage->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/mage.jpg");
 	}
 
 	void GameMode::DrawTile(Tile* tile)
@@ -153,6 +155,70 @@ namespace CW
 	}
 	void GameMode::DrawUnit(FieldUnit* unit)
 	{
+		const int numVertices = 6;
+		const int width = 50;
+		const int height = 50;
+		int leftMargin = 50;
+		int bottomMargin = 50;
 
+		const D3DXVECTOR4 positions[numVertices] =
+		{
+			{ 0, 0, 0, 0 },
+			{ 0, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 1, 0, 0, 0 },
+			{ 0, 0, 0, 0 }
+		};
+		const D3DXVECTOR2 texPositions[numVertices] =
+		{
+			{ 0, 1 },
+			{ 0, 0 },
+			{ 1, 0 },
+			{ 1, 0 },
+			{ 1, 1 },
+			{ 0, 1 }
+		};
+
+		FG::RenderInfo info;
+		info.noVertices = numVertices;
+		info.position.resize(numVertices);
+		info.texPosition.resize(numVertices);
+
+		D3DXVECTOR4 sqPosition[numVertices];
+		// Outer square
+		memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));
+
+		for (int i = 0; i < numVertices; ++i)
+		{
+			sqPosition[i][0] += unit->GetX();
+			sqPosition[i][1] += unit->GetY();
+
+			sqPosition[i][0] *= width;
+			sqPosition[i][1] *= height;
+
+			sqPosition[i][0] += leftMargin;
+			sqPosition[i][1] += bottomMargin;
+
+			info.position[i] = sqPosition[i];
+			info.texPosition[i] = texPositions[i];
+		}
+
+		info.color = D3DXVECTOR4(1, 1, 1, 1);
+
+		switch (unit->GetUnitTYpe())
+		{
+		case FieldUnit::FU_CHRONO_SOLDIER:
+			info.texture = mSoldier.get();
+			break;
+		case FieldUnit::FU_CHRONO_MAGE:
+			info.texture = mMage.get();
+			break;
+		case FieldUnit::FU_DEFAULT:
+			info.texture = mApple.get();
+			break;
+		}
+
+		mCanvas->AddRenderInfo(info);
 	}
 }

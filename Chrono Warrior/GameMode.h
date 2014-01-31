@@ -53,6 +53,6 @@ namespace CW
 		std::shared_ptr<FG::MouseInput> mMouse;
 
 		std::shared_ptr<TextureClass> mLemon, mApple;
-		std::shared_ptr<TextureClass> mSoldier;
+		std::shared_ptr<TextureClass> mSoldier, mMage;
 	};
 }

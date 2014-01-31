@@ -16,6 +16,8 @@ namespace CW
 		void Initialize();
 		void Destroy();
 
+		void AddUnit(std::shared_ptr<FieldUnit> unit);
+
 		std::shared_ptr<Tile> GetTile(int x, int y) const;
 		std::shared_ptr<Tile> GetTile(const Position& pos) const;
 

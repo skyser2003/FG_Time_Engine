@@ -61,6 +61,11 @@ namespace CW
 		mTiles.clear();
 	}
 
+	void Map::AddUnit(std::shared_ptr<FieldUnit> unit)
+	{
+		mUnits.insert(std::make_pair(unit->GetPosition(), unit));
+	}
+
 	std::shared_ptr<Tile> Map::GetTile(int x, int y) const
 	{
 		return GetTile(Position(x, y));
