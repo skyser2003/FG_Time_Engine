@@ -21,7 +21,7 @@ namespace CW
 		mCanvas->BeginRender();
 		mCanvas->EquipPixelShader(mPS);
 		mCanvas->EquipVertexShader(mVS);
-		mPS->SetTexture(mTx->GetTexture());
+		mPS->SetTexture(mLemon->GetTexture());
 
 		MatrixBufferType matrixBuffer;
 		D3DXMatrixTranspose(&matrixBuffer.world, &mCanvas->GetGraphics()->GetWorldMatrix());
@@ -29,59 +29,15 @@ namespace CW
 		D3DXMatrixTranspose(&matrixBuffer.projection, &mCanvas->GetGraphics()->GetProjectionMatrix());
 		mVS->SetCBufferDesc("matrix", &matrixBuffer, sizeof(matrixBuffer));
 
-		mMap->ForeachTile([&](Tile* tile)
+		// Draw tile
+		mMap->ForeachTile([&, this](Tile* tile)
 		{
-			const int numVertices = 6;
-			const int width = 25;
-			const int height = 25;
-			int leftMargin = 50;
-			int bottomMargin = 50;
-
-			const D3DXVECTOR4 positions[numVertices] =
-			{
-				{ 0, 0, 0, 0 },
-				{ 0, 1, 0, 0 },
-				{ 1, 1, 0, 0 },
-				{ 1, 1, 0, 0 },
-				{ 1, 0, 0, 0 },
-				{ 0, 0, 0, 0 }
-			};
-			const D3DXVECTOR2 texPositions[numVertices] =
-			{
-				{ 0, 1 },
-				{ 0, 0 },
-				{ 1, 0 },
-				{ 1, 0 },
-				{ 1, 1 },
-				{ 0, 1 }
-			};
-
-			FG::RenderInfo info;
-			info.noVertices = numVertices;
-			info.position.resize(numVertices);
-			info.texPosition.resize(numVertices);
-
-			D3DXVECTOR4 sqPosition[numVertices];
-			// Outer square
-			memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));
-
-			for (int i = 0; i < numVertices; ++i)
-			{
-				sqPosition[i][0] += tile->GetX();
-				sqPosition[i][1] += tile->GetY();
-
-				sqPosition[i][0] *= width;
-				sqPosition[i][1] *= height;
-
-				sqPosition[i][0] += leftMargin;
-				sqPosition[i][1] += bottomMargin;
-
-				info.position[i] = sqPosition[i];
-				info.texPosition[i] = texPositions[i];
-			}
-
-			info.color = D3DXVECTOR4(0, 0, 0, 0);
-			mCanvas->AddRenderInfo(info);
+			this->DrawTile(tile);
+		});
+		// Draw unit
+		mMap->ForeachUnit([&, this](FieldUnit* unit)
+		{
+			this->DrawUnit(unit);
 		});
 
 		mCanvas->Render();
@@ -121,7 +77,82 @@ namespace CW
 		}
 		mPS->CreateSamplerState();
 
-		mTx.reset(new TextureClass);
-		mTx->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/lemon.jpg");
+		mLemon.reset(new TextureClass);
+		mApple.reset(new TextureClass);
+		mSoldier.reset(new TextureClass);
+
+		mLemon->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/lemon.jpg");
+		mApple->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/apple.jpg");
+		mSoldier->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/scv.jpg");
+	}
+
+	void GameMode::DrawTile(Tile* tile)
+	{
+		const int numVertices = 6;
+		const int width = 50;
+		const int height = 50;
+		int leftMargin = 50;
+		int bottomMargin = 50;
+
+		const D3DXVECTOR4 positions[numVertices] =
+		{
+			{ 0, 0, 0, 0 },
+			{ 0, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 1, 0, 0, 0 },
+			{ 0, 0, 0, 0 }
+		};
+		const D3DXVECTOR2 texPositions[numVertices] =
+		{
+			{ 0, 1 },
+			{ 0, 0 },
+			{ 1, 0 },
+			{ 1, 0 },
+			{ 1, 1 },
+			{ 0, 1 }
+		};
+
+		FG::RenderInfo info;
+		info.noVertices = numVertices;
+		info.position.resize(numVertices);
+		info.texPosition.resize(numVertices);
+
+		D3DXVECTOR4 sqPosition[numVertices];
+		// Outer square
+		memcpy_s(sqPosition, sizeof(sqPosition), positions, sizeof(positions));
+
+		for (int i = 0; i < numVertices; ++i)
+		{
+			sqPosition[i][0] += tile->GetX();
+			sqPosition[i][1] += tile->GetY();
+
+			sqPosition[i][0] *= width;
+			sqPosition[i][1] *= height;
+
+			sqPosition[i][0] += leftMargin;
+			sqPosition[i][1] += bottomMargin;
+
+			info.position[i] = sqPosition[i];
+			info.texPosition[i] = texPositions[i];
+		}
+
+		info.color = D3DXVECTOR4(1, 1, 1, 1);
+
+		switch (tile->GetType())
+		{
+		case Tile::TILE_SPACE:
+			info.texture = mApple.get();
+			break;
+		case Tile::TILE_ROAD:
+			info.texture = mLemon.get();
+			break;
+		}
+
+		mCanvas->AddRenderInfo(info);
+	}
+	void GameMode::DrawUnit(FieldUnit* unit)
+	{
+
 	}
 }

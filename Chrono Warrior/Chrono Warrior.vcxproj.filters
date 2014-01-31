@@ -49,6 +49,9 @@
     <Filter Include="Extern\tinyxml2">
       <UniqueIdentifier>{185e6389-e586-44c7-9374-76ff2c91264b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logic\Projectile">
+      <UniqueIdentifier>{f99d8f08-557a-43e0-b0d0-553e2299a929}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

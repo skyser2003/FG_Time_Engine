@@ -17,6 +17,8 @@ namespace CW
 		int GetX() const { return mX; }
 		int GetY() const { return mY; }
 	private:
+		int Hash() const;
+
 		int mX, mY;
 	};
 }

@@ -14,6 +14,11 @@ namespace CW
 
 	bool Position::operator<(const Position& rhs) const
 	{
-		return true; // Stub
+		return Hash() < rhs.Hash();
+	}
+
+	int Position::Hash() const
+	{
+		return 10000 * mX + mY;
 	}
 }
