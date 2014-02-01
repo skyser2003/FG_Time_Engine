@@ -206,7 +206,7 @@ namespace CW
 
 		info.color = D3DXVECTOR4(1, 1, 1, 1);
 
-		switch (unit->GetUnitTYpe())
+		switch (unit->GetUnitType())
 		{
 		case FieldUnit::FU_CHRONO_SOLDIER:
 			info.texture = mSoldier.get();

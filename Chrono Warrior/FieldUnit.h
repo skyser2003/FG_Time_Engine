@@ -20,7 +20,7 @@ namespace CW
 		virtual void Destroy();
 
 		void SetUnitType(FIELDUNIT_TYPE type) { mType = type; }
-		FIELDUNIT_TYPE GetUnitTYpe() const { return mType; }
+		FIELDUNIT_TYPE GetUnitType() const { return mType; }
 	private:
 		FIELDUNIT_TYPE mType;
 	};
