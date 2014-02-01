@@ -19,6 +19,14 @@
 
 #include "DxCanvas.h"
 
+struct VertexType
+{
+	D3DXVECTOR4 position;
+	D3DXVECTOR4 color;
+	D3DXVECTOR2 texture;
+	D3DXVECTOR3 normal;
+};
+
 void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPTSTR    lpCmdLine,
@@ -175,14 +183,9 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 	const float edgeRatio = 0.1f;
 
 	FG::RenderInfo outerInfo, innerInfo;
-	outerInfo.noVertices = numVertices;
-	outerInfo.position.resize(numVertices);
-	outerInfo.texPosition.resize(numVertices);
-
-	innerInfo.noVertices = numVertices;
-	innerInfo.position.resize(numVertices);
-	innerInfo.texPosition.resize(numVertices);
-
+	VertexType* outerVertices = new VertexType[numVertices];
+	VertexType* innerVertices = new VertexType[numVertices];
+	
 	const D3DXVECTOR4 positions[numVertices] =
 	{
 		{ 0, 0, 0, 0 },
@@ -218,11 +221,15 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 		sqPosition[i][0] += leftMargin;
 		sqPosition[i][1] += bottomMargin;
 
-		outerInfo.position[i] = sqPosition[i];
-		outerInfo.texPosition[i] = texPositions[i];
+		outerVertices[i].position = sqPosition[i];
+		outerVertices[i].color = outerColor;
+		outerVertices[i].texture = texPositions[i];
+		outerVertices[i].normal = D3DXVECTOR3(0, 0, 0);
 	}
 
-	outerInfo.color = outerColor;
+	outerInfo.noVertices = numVertices;
+	outerInfo.buffer = outerVertices;
+	outerInfo.bufferSize = sizeof(*outerVertices) * numVertices;
 	mCanvas->AddRenderInfo(outerInfo);
 
 	// Inner square
@@ -242,11 +249,15 @@ void Game::DrawBlock(int x, int y, D3DXVECTOR4 outerColor, D3DXVECTOR4 innerColo
 		sqPosition[i][0] += leftMargin;
 		sqPosition[i][1] += bottomMargin;
 
-		innerInfo.position[i] = sqPosition[i];
-		innerInfo.texPosition[i] = texPositions[i];
+		innerVertices[i].position = sqPosition[i];
+		innerVertices[i].color = innerColor;
+		innerVertices[i].texture = texPositions[i];
+		innerVertices[i].normal = D3DXVECTOR3(0, 0, 0);
 	}
 
-	innerInfo.color = innerColor;
+	innerInfo.noVertices = numVertices;
+	innerInfo.buffer = innerVertices;
+	innerInfo.bufferSize = sizeof(*innerVertices) * numVertices;
 	mCanvas->AddRenderInfo(innerInfo);
 	mCanvas->Render();
 }

@@ -16,6 +16,14 @@
 
 namespace CW
 {
+	struct VertexType
+	{
+		D3DXVECTOR4 position;
+		D3DXVECTOR4 color;
+		D3DXVECTOR2 texture;
+		D3DXVECTOR3 normal;
+	};
+
 	void GameMode::Draw(std::chrono::system_clock::duration dt)
 	{
 		mCanvas->BeginRender();
@@ -116,9 +124,7 @@ namespace CW
 		};
 
 		FG::RenderInfo info;
-		info.noVertices = numVertices;
-		info.position.resize(numVertices);
-		info.texPosition.resize(numVertices);
+		VertexType* vertices = new VertexType[numVertices];
 
 		D3DXVECTOR4 sqPosition[numVertices];
 		// Outer square
@@ -135,11 +141,15 @@ namespace CW
 			sqPosition[i][0] += leftMargin;
 			sqPosition[i][1] += bottomMargin;
 
-			info.position[i] = sqPosition[i];
-			info.texPosition[i] = texPositions[i];
+			vertices[i].position = sqPosition[i];
+			vertices[i].color = D3DXVECTOR4(1, 1, 1, 1);
+			vertices[i].texture = texPositions[i];
+			vertices[i].normal = D3DXVECTOR3(0, 0, 0);
 		}
 
-		info.color = D3DXVECTOR4(1, 1, 1, 1);
+		info.noVertices = numVertices;
+		info.buffer = vertices;
+		info.bufferSize = sizeof(*vertices) * numVertices;
 
 		switch (tile->GetType())
 		{
@@ -181,9 +191,7 @@ namespace CW
 		};
 
 		FG::RenderInfo info;
-		info.noVertices = numVertices;
-		info.position.resize(numVertices);
-		info.texPosition.resize(numVertices);
+		VertexType* vertices = new VertexType[numVertices];
 
 		D3DXVECTOR4 sqPosition[numVertices];
 		// Outer square
@@ -200,11 +208,15 @@ namespace CW
 			sqPosition[i][0] += leftMargin;
 			sqPosition[i][1] += bottomMargin;
 
-			info.position[i] = sqPosition[i];
-			info.texPosition[i] = texPositions[i];
+			vertices[i].position = sqPosition[i];
+			vertices[i].color = D3DXVECTOR4(1, 1, 1, 1);
+			vertices[i].texture = texPositions[i];
+			vertices[i].normal = D3DXVECTOR3(0, 0, 0);
 		}
 
-		info.color = D3DXVECTOR4(1, 1, 1, 1);
+		info.noVertices = numVertices;
+		info.buffer = vertices;
+		info.bufferSize = sizeof(*vertices) * numVertices;
 
 		switch (unit->GetUnitType())
 		{
