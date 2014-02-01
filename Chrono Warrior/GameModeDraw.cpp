@@ -23,7 +23,7 @@ namespace CW
 		mCanvas->EquipVertexShader(mVS);
 		mPS->SetTexture(mLemon->GetTexture());
 
-		MatrixBufferType matrixBuffer;
+		FG::MatrixBufferType matrixBuffer;
 		D3DXMatrixTranspose(&matrixBuffer.world, &mCanvas->GetGraphics()->GetWorldMatrix());
 		D3DXMatrixTranspose(&matrixBuffer.view, &mCanvas->GetGraphics()->GetViewMatrix());
 		D3DXMatrixTranspose(&matrixBuffer.projection, &mCanvas->GetGraphics()->GetProjectionMatrix());
@@ -65,7 +65,7 @@ namespace CW
 		mVS->SetupShaderBufferInputType("COLOR");
 		mVS->SetupShaderBufferInputType("TEXCOORD");
 		mVS->CreateShaderBufferDesc();
-		mVS->CreateCBufferDesc("matrix", sizeof(MatrixBufferType));
+		mVS->CreateCBufferDesc("matrix", sizeof(FG::MatrixBufferType));
 
 		mPS = mCanvas->CreatePixelShader();
 		//result = mPS->CompileShader(psColorFileName.c_str(), "PixelColorMain");
@@ -77,10 +77,10 @@ namespace CW
 		}
 		mPS->CreateSamplerState();
 
-		mLemon.reset(new TextureClass);
-		mApple.reset(new TextureClass);
-		mSoldier.reset(new TextureClass);
-		mMage.reset(new TextureClass);
+		mLemon.reset(new FG::TextureClass);
+		mApple.reset(new FG::TextureClass);
+		mSoldier.reset(new FG::TextureClass);
+		mMage.reset(new FG::TextureClass);
 
 		mLemon->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/lemon.jpg");
 		mApple->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/apple.jpg");

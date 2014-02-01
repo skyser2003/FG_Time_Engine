@@ -49,7 +49,7 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 	mVS->SetupShaderBufferInputType("COLOR");
 	mVS->SetupShaderBufferInputType("TEXCOORD");
 	mVS->CreateShaderBufferDesc();
-	mVS->CreateCBufferDesc("matrix", sizeof(MatrixBufferType));
+	mVS->CreateCBufferDesc("matrix", sizeof(FG::MatrixBufferType));
 
 	result = mPSTexture->CompileShader(psTextureFileName.c_str(), "PixelTextureMain");
 	if (FAILED(result))
@@ -69,7 +69,7 @@ void Game::InitializeGraphics(_In_ HINSTANCE hInstance,
 
 	mPSColor->CreateSamplerState();
 
-	mBlock.reset(new TextureClass);
+	mBlock.reset(new FG::TextureClass);
 	mBlock->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/TimeTetris/square.jpg");
 
 	mPSTexture->SetTexture(mBlock->GetTexture());
@@ -86,7 +86,7 @@ void Game::Draw()
 	mCanvas->EquipVertexShader(mVS);
 	mCanvas->EquipPixelShader(mPSColor);
 
-	MatrixBufferType matrixBuffer;
+	FG::MatrixBufferType matrixBuffer;
 	D3DXMatrixTranspose(&matrixBuffer.world, &mCanvas->GetGraphics()->GetWorldMatrix());
 	D3DXMatrixTranspose(&matrixBuffer.view, &mCanvas->GetGraphics()->GetViewMatrix());
 	D3DXMatrixTranspose(&matrixBuffer.projection, &mCanvas->GetGraphics()->GetProjectionMatrix());

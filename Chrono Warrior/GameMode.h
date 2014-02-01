@@ -2,13 +2,12 @@
 
 #include "Mode.h"
 
-class DxCanvas;
-class VertexShader;
-class PixelShader;
-class TextureClass;
-
 namespace FG
 {
+	class DxCanvas;
+	class VertexShader;
+	class PixelShader;
+	class TextureClass;
 	class KeyboardInput;
 	class MouseInput;
 }
@@ -45,14 +44,14 @@ namespace CW
 
 		std::shared_ptr<Map> mMap;
 
-		DxCanvas* mCanvas;
-		std::shared_ptr<VertexShader> mVS;
-		std::shared_ptr<PixelShader> mPS;
+		FG::DxCanvas* mCanvas;
+		std::shared_ptr<FG::VertexShader> mVS;
+		std::shared_ptr<FG::PixelShader> mPS;
 
 		std::shared_ptr<FG::KeyboardInput> mKeyboard;
 		std::shared_ptr<FG::MouseInput> mMouse;
 
-		std::shared_ptr<TextureClass> mLemon, mApple;
-		std::shared_ptr<TextureClass> mSoldier, mMage;
+		std::shared_ptr<FG::TextureClass> mLemon, mApple;
+		std::shared_ptr<FG::TextureClass> mSoldier, mMage;
 	};
 }
