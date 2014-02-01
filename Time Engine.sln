@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Time Engine", "Time Engine.vcxproj", "{20F324E7-F880-4C88-8C7E-BA58EFC36849}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowManager", "..\FG_Window_Library\WindowManager.vcxproj", "{D53B381F-26B4-4F85-9993-0CE72FD46B48}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Chrono Warrior", "Chrono Warrior\Chrono Warrior.vcxproj", "{797FAADB-2047-4F95-A016-219E01E7AB2F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIEngine", "..\FG_UI_Engine\UIEngine.vcxproj", "{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,14 @@ Global
 		{797FAADB-2047-4F95-A016-219E01E7AB2F}.Release|Win32.Build.0 = Release|Win32
 		{797FAADB-2047-4F95-A016-219E01E7AB2F}.Release|x64.ActiveCfg = Release|x64
 		{797FAADB-2047-4F95-A016-219E01E7AB2F}.Release|x64.Build.0 = Release|x64
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Debug|Win32.ActiveCfg = Debug|Win32
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Debug|Win32.Build.0 = Debug|Win32
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Debug|x64.ActiveCfg = Debug|x64
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Debug|x64.Build.0 = Debug|x64
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Release|Win32.ActiveCfg = Release|Win32
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Release|Win32.Build.0 = Release|Win32
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Release|x64.ActiveCfg = Release|x64
+		{45C3DC55-F4EB-4F7A-B2F4-3A258E381146}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
