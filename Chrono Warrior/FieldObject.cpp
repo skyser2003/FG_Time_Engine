@@ -32,7 +32,7 @@ namespace CW
 	{
 		return mTile->GetY();
 	}
-	Position FieldObject::GetPosition() const
+	const Position& FieldObject::GetPosition() const
 	{
 		return mTile->GetPosition();
 	}

@@ -52,7 +52,7 @@ namespace CW
 					tile->SetType(Tile::TILE_ROAD);
 				}
 
-				mTiles.insert(std::make_pair(tile->GetPosition(), tile));
+				mTiles.push_back(tile);
 			}
 		}
 	}
@@ -63,7 +63,26 @@ namespace CW
 
 	void Map::AddUnit(std::shared_ptr<FieldUnit> unit)
 	{
-		mUnits.insert(std::make_pair(unit->GetPosition(), unit));
+		mUnits.push_back(unit);
+	}
+	std::vector<std::shared_ptr<FieldUnit>> Map::GetUnits(int x, int y) const
+	{
+		return GetUnits(Position(x, y));
+	}
+	std::vector<std::shared_ptr<FieldUnit>> Map::GetUnits(const Position& pos) const
+	{
+		std::vector<std::shared_ptr<FieldUnit>> units;
+
+		for (auto it : mUnits)
+		{
+			const Position& unitPos = it->GetPosition();
+			if (unitPos == pos)
+			{
+				units.push_back(it);
+			}
+		}
+
+		return units;
 	}
 
 	std::shared_ptr<Tile> Map::GetTile(int x, int y) const
@@ -72,29 +91,29 @@ namespace CW
 	}
 	std::shared_ptr<Tile> Map::GetTile(const Position& pos) const
 	{
-		auto it = mTiles.find(pos);
-		if (it == mTiles.end())
+		for (auto tile : mTiles)
 		{
-			return nullptr;
+			if (tile->GetPosition() == pos)
+			{
+				return tile;
+			}
 		}
-		else
-		{
-			return it->second;
-		}
+
+		return nullptr;
 	}
 
 	void Map::ForeachTile(std::function<void(Tile*)> lambda)
 	{
-		for (auto it : mTiles)
+		for (auto tile : mTiles)
 		{
-			lambda(it.second.get());
+			lambda(tile.get());
 		}
 	}
 	void Map::ForeachUnit(std::function<void(FieldUnit*)> lambda)
 	{
-		for (auto it : mUnits)
+		for (auto unit : mUnits)
 		{
-			lambda(it.second.get());
+			lambda(unit.get());
 		}
 	}
 }

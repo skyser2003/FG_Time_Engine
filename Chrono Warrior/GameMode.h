@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mode.h"
+#include "Position.h"
 
 namespace FG
 {
@@ -40,6 +41,12 @@ namespace CW
 		void DrawTile(Tile* tile);
 		void DrawUnit(FieldUnit* unit);
 
+		int GetTileX(WORD screenX) const;
+		int GetTileY(WORD screenY) const;
+		Position GetTilePosition(WORD screenX, WORD screenY) const;
+
+		// Member variables
+
 		std::chrono::system_clock::time_point currentTime;
 
 		std::shared_ptr<Map> mMap;
@@ -53,5 +60,11 @@ namespace CW
 
 		std::shared_ptr<FG::TextureClass> mLemon, mApple;
 		std::shared_ptr<FG::TextureClass> mSoldier, mMage;
+
+		// Canvas
+		const int mTileWidth = 50;
+		const int mTileHeight = 50;
+		int mLeftMargin = 50;
+		int mBottomMargin = 50;
 	};
 }

@@ -33,6 +33,7 @@ namespace CW
 
 		window->RegisterInput(mKeyboard.get());
 		window->RegisterInput(mMouse.get());
+		mMouse->SetScreenSize(window->GetScreenWidth(), window->GetScreenHeight());
 
 		InitializeGraphics();
 	}
@@ -60,16 +61,23 @@ namespace CW
 		}
 
 		// Mouse input
+		WORD x = mMouse->GetX();
+		WORD y = mMouse->GetY();
 		FG::MouseInput::BUTTON_STATE lButton = mMouse->GetLButtonState();
 		FG::MouseInput::BUTTON_STATE rButton = mMouse->GetRButtonState();
 		float wheel = mMouse->GetWheelValue();
 
 		if (lButton == FG::MouseInput::BUTTON_DOWN)
 		{
-			std::shared_ptr<FieldUnit> unit(new FieldUnit);
-			unit->SetUnitType(FieldUnit::FU_CHRONO_MAGE);
-			unit->SetTile(mMap->GetTile(0, 0));
-			mMap->AddUnit(unit);
+			Position tilePos = GetTilePosition(x, y);
+			auto tile = mMap->GetTile(tilePos);
+			if (tile != nullptr)
+			{
+				std::shared_ptr<FieldUnit> unit(new FieldUnit);
+				unit->SetUnitType(FieldUnit::FU_CHRONO_MAGE);
+				unit->SetTile(tile);
+				mMap->AddUnit(unit);
+			}
 		}
 
 		// Map update

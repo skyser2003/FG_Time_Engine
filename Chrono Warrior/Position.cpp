@@ -16,6 +16,14 @@ namespace CW
 	{
 		return Hash() < rhs.Hash();
 	}
+	bool Position::operator==(const Position& rhs) const
+	{
+		return mX == rhs.mX && mY == rhs.mY;
+	}
+	bool Position::operator!=(const Position& rhs) const
+	{
+		return !operator==(rhs);
+	}
 
 	int Position::Hash() const
 	{

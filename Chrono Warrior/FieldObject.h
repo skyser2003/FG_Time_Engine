@@ -19,7 +19,7 @@ namespace CW
 
 		int GetX() const;
 		int GetY() const;
-		Position GetPosition() const;
+		const Position& GetPosition() const;
 	private:
 		std::shared_ptr<Tile> mTile;
 	};

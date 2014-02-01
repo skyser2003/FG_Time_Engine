@@ -5,6 +5,7 @@
 #include "graphicsclass.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+#include "TextureManager.h"
 #include "textureclass.h"
 
 #include "WindowManager.h"
@@ -85,24 +86,18 @@ namespace CW
 		}
 		mPS->CreateSamplerState();
 
-		mLemon.reset(new FG::TextureClass);
-		mApple.reset(new FG::TextureClass);
-		mSoldier.reset(new FG::TextureClass);
-		mMage.reset(new FG::TextureClass);
+		auto& tm = mCanvas->GetTextureManager();
+		tm.SetDevice(mCanvas->GetDevice());
 
-		mLemon->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/lemon.jpg");
-		mApple->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/apple.jpg");
-		mSoldier->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/scv.jpg");
-		mMage->Initialize(mCanvas->GetDevice(), "C:/Projects/FGEngine/FG_Time_Engine/Chrono Warrior/Data/mage.jpg");
+		mLemon = tm.CreateTexture("Data/lemon.jpg");
+		mApple = tm.CreateTexture("Data/apple.jpg");
+		mSoldier = tm.CreateTexture("Data/scv.jpg");
+		mMage = tm.CreateTexture("Data/mage.jpg");
 	}
 
 	void GameMode::DrawTile(Tile* tile)
 	{
 		const int numVertices = 6;
-		const int width = 50;
-		const int height = 50;
-		int leftMargin = 50;
-		int bottomMargin = 50;
 
 		const D3DXVECTOR4 positions[numVertices] =
 		{
@@ -135,11 +130,11 @@ namespace CW
 			sqPosition[i][0] += tile->GetX();
 			sqPosition[i][1] += tile->GetY();
 
-			sqPosition[i][0] *= width;
-			sqPosition[i][1] *= height;
+			sqPosition[i][0] *= mTileWidth;
+			sqPosition[i][1] *= mTileHeight;
 
-			sqPosition[i][0] += leftMargin;
-			sqPosition[i][1] += bottomMargin;
+			sqPosition[i][0] += mLeftMargin;
+			sqPosition[i][1] += mBottomMargin;
 
 			vertices[i].position = sqPosition[i];
 			vertices[i].color = D3DXVECTOR4(1, 1, 1, 1);
@@ -232,5 +227,18 @@ namespace CW
 		}
 
 		mCanvas->AddRenderInfo(info);
+	}
+
+	int GameMode::GetTileX(WORD screenX) const
+	{
+		return (screenX - mLeftMargin) / mTileWidth;
+	}
+	int GameMode::GetTileY(WORD screenY) const
+	{
+		return (screenY - mLeftMargin) / mTileHeight;
+	}
+	Position GameMode::GetTilePosition(WORD screenX, WORD screenY) const
+	{
+		return Position(GetTileX(screenX), GetTileY(screenY));
 	}
 }

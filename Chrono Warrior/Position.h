@@ -9,6 +9,8 @@ namespace CW
 		Position(int x, int y);
 
 		bool operator<(const Position& rhs) const;
+		bool operator==(const Position& rhs) const;
+		bool operator!=(const Position& rhs) const;
 
 		void SetX(int x) { mX = x; }
 		void SetY(int y) { mY = y; }
