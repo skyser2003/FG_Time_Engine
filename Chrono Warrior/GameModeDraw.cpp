@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "GameMode.h"
 
-#include "DxCanvas.h"
-#include "graphicsclass.h"
-#include "VertexShader.h"
-#include "PixelShader.h"
-#include "TextureManager.h"
-#include "textureclass.h"
+#include "Canvas/DxCanvas.h"
+#include "Graphics/graphicsclass.h"
+#include "Shaders/VertexShader/VertexShader.h"
+#include "Shaders/PixelShader/PixelShader.h"
+#include "TextureManager/TextureManager.h"
+#include "Texture/textureclass.h"
 
 #include "WindowManager.h"
 #include "Window.h"

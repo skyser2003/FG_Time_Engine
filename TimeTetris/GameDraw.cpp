@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "Game.h"
 
-#include "d3dclass.h"
-#include "graphicsclass.h"
-#include "textureclass.h"
-#include "modelclass.h"
-#include "VertexShader.h"
-#include "PixelShader.h"
-#include "TextureManager.h"
+#include "DirectX/d3dclass.h"
+#include "Graphics/graphicsclass.h"
+#include "Texture/textureclass.h"
+#include "Model/modelclass.h"
+#include "Shaders/VertexShader/VertexShader.h"
+#include "Shaders/PixelShader/PixelShader.h"
+#include "TextureManager/TextureManager.h"
 
 #include "WindowManager.h"
 #include "Window.h"
@@ -17,7 +17,7 @@
 #include "TimeManager.h"
 #include "UtilFunc.h"
 
-#include "DxCanvas.h"
+#include "Canvas/DxCanvas.h"
 
 struct VertexType
 {
