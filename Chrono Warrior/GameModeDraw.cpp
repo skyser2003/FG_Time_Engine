@@ -226,6 +226,14 @@ namespace CW
 			break;
 		}
 
+		if (unit == mSelectedUnit.get())
+		{
+			for (int i = 0; i < numVertices; ++i)
+			{
+				vertices[i].color = D3DXVECTOR4(1, 0, 1, 1);
+			}
+		}
+
 		mCanvas->AddRenderInfo(info);
 	}
 

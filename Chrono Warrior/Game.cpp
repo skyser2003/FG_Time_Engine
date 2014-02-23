@@ -41,5 +41,6 @@ namespace CW
 		});
 
 		mWindow->Run();
+		FG::WindowManager::GetInstance().CloseAllWindow();
 	}
 }

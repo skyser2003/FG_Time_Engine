@@ -28,7 +28,7 @@ namespace CW
 		virtual void Initialize(const std::shared_ptr<FG::Window>& window) override;
 		virtual void Destroy() override;
 
-		virtual void Run() override;
+		virtual bool Run() override;
 	private:
 		// Logic
 		virtual void Update(std::chrono::system_clock::duration dt) override;
@@ -45,12 +45,12 @@ namespace CW
 		int GetTileY(WORD screenY) const;
 		Position GetTilePosition(WORD screenX, WORD screenY) const;
 
-		// Member variables
-
+		// Logic variables
 		std::chrono::system_clock::time_point currentTime;
-
 		std::shared_ptr<Map> mMap;
+		std::shared_ptr<FieldUnit> mSelectedUnit;
 
+		// Graphics variables
 		FG::DxCanvas* mCanvas;
 		std::shared_ptr<FG::VertexShader> mVS;
 		std::shared_ptr<FG::PixelShader> mPS;

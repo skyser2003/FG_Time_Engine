@@ -26,7 +26,7 @@ namespace CW
 
 		int GetX() const { return mPos.GetX(); }
 		int GetY() const { return mPos.GetY(); }
-		Position GetPosition() const { return mPos; }
+		const Position& GetPosition() const { return mPos; }
 	private:
 		TileType mType;
 		Position mPos;

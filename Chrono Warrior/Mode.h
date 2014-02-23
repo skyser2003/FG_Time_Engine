@@ -15,7 +15,7 @@ namespace CW
 		virtual void Initialize(const std::shared_ptr<FG::Window>& window);
 		virtual void Destroy();
 
-		virtual void Run() = 0;
+		virtual bool Run() = 0;
 
 		std::shared_ptr<FG::Window> GetWindow() const { return mWindow; }
 	private:

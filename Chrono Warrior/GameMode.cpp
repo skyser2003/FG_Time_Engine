@@ -13,7 +13,6 @@ namespace CW
 {
 	GameMode::GameMode()
 	{
-
 	}
 	GameMode::~GameMode()
 	{
@@ -27,6 +26,7 @@ namespace CW
 		mMap.reset(new Map);
 		mMap->Initialize();
 		currentTime = std::chrono::system_clock::now();
+		mSelectedUnit = nullptr;
 
 		mKeyboard.reset(new FG::KeyboardInput);
 		mMouse.reset(new FG::MouseInput);
@@ -42,7 +42,7 @@ namespace CW
 		Mode::Destroy();
 	}
 
-	void GameMode::Run()
+	bool GameMode::Run()
 	{
 		auto now = std::chrono::system_clock::now();
 		auto duration = now - currentTime;
@@ -50,6 +50,8 @@ namespace CW
 
 		Update(duration);
 		Draw(duration);
+
+		return true;
 	}
 
 	void GameMode::Update(std::chrono::system_clock::duration dt)
@@ -71,12 +73,22 @@ namespace CW
 		{
 			Position tilePos = GetTilePosition(x, y);
 			auto tile = mMap->GetTile(tilePos);
+			auto units = mMap->GetUnits(tilePos);
 			if (tile != nullptr)
 			{
-				std::shared_ptr<FieldUnit> unit(new FieldUnit);
-				unit->SetUnitType(FieldUnit::FU_CHRONO_MAGE);
-				unit->SetTile(tile);
-				mMap->AddUnit(unit);
+				if (units.size() == 0)
+				{
+					mSelectedUnit = nullptr;
+
+					std::shared_ptr<FieldUnit> unit(new FieldUnit);
+					unit->SetUnitType(FieldUnit::FU_CHRONO_MAGE);
+					unit->SetTile(tile);
+					mMap->AddUnit(unit);
+				}
+				else
+				{
+					mSelectedUnit = units[0];
+				}
 			}
 		}
 
