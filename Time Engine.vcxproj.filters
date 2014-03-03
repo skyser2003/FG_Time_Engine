@@ -1,58 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="TimeObject.cpp">
-      <Filter>TimeObject</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>stdafxh</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeVariable.cpp">
-      <Filter>TimeVariable</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeEntity.cpp">
-      <Filter>TimeEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeManager.cpp">
-      <Filter>TimeManager</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalTimeEntity.cpp">
-      <Filter>TimeEntities</Filter>
-    </ClCompile>
-    <ClCompile Include="ReverseTimeEntity.cpp">
-      <Filter>TimeEntities</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="TimeEntity.h">
-      <Filter>TimeEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeObject.h">
-      <Filter>TimeObject</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>stdafxh</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeVariable.h">
-      <Filter>TimeVariable</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalTimeEntity.h">
-      <Filter>TimeEntities</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeManager.h">
-      <Filter>TimeManager</Filter>
-    </ClInclude>
-    <ClInclude Include="ITimeVariable.h">
-      <Filter>TimeVariable</Filter>
-    </ClInclude>
-    <ClInclude Include="ReverseTimeEntity.h">
-      <Filter>TimeEntities</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="TimeEntity">
-      <UniqueIdentifier>{9922da70-4f20-426c-8210-4a927adb6447}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TimeObject">
       <UniqueIdentifier>{68c132c9-5ea2-4296-890f-770b332e4d41}</UniqueIdentifier>
     </Filter>
@@ -62,11 +10,60 @@
     <Filter Include="TimeVariable">
       <UniqueIdentifier>{df358a81-c6c7-45ad-a953-85a654ad9e19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TimeEntities">
-      <UniqueIdentifier>{1382f27d-fb63-4b0a-9219-a870ee7a250b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TimeManager">
       <UniqueIdentifier>{ee3ccdf1-0c21-4b2f-afe2-77bd29d3152d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TimeEntity">
+      <UniqueIdentifier>{1382f27d-fb63-4b0a-9219-a870ee7a250b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\StdAfx\stdafx.h">
+      <Filter>stdafxh</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TimeObject\TimeObject.h">
+      <Filter>TimeObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TimeManager\TimeManager.h">
+      <Filter>TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TimeVariable\ITimeVariable.h">
+      <Filter>TimeVariable</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TimeVariable\TimeVariable.h">
+      <Filter>TimeVariable</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TimeEntity\ReverseTimeEntity.h">
+      <Filter>TimeEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TimeEntity\TimeEntity.h">
+      <Filter>TimeEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TimeEntity\NormalTimeEntity.h">
+      <Filter>TimeEntity</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\StdAfx\stdafx.cpp">
+      <Filter>stdafxh</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TimeObject\TimeObject.cpp">
+      <Filter>TimeObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TimeManager\TimeManager.cpp">
+      <Filter>TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TimeVariable\TimeVariable.cpp">
+      <Filter>TimeVariable</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TimeEntity\ReverseTimeEntity.cpp">
+      <Filter>TimeEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TimeEntity\TimeEntity.cpp">
+      <Filter>TimeEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TimeEntity\NormalTimeEntity.cpp">
+      <Filter>TimeEntity</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

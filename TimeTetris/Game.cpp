@@ -5,11 +5,11 @@
 #include "Block.h"
 #include "Point.h"
 
-#include "TimeManager.h"
+#include "TimeManager/TimeManager.h"
 #include "KeyboardInput.h"
 
-#include "NormalTimeEntity.h"
-#include "ReverseTimeEntity.h"
+#include "TimeEntity/NormalTimeEntity.h"
+#include "TimeEntity/ReverseTimeEntity.h"
 #include "Window.h"
 
 Game::Game()

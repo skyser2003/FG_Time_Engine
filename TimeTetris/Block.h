@@ -2,8 +2,8 @@
 
 #include "Point.h"
 
-#include "TimeObject.h"
-#include "TimeVariable.h"
+#include "TimeObject/TimeObject.h"
+#include "TimeVariable/TimeVariable.h"
 
 #include <array>
 

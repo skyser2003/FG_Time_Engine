@@ -4,7 +4,7 @@
 #include <functional>
 #include <vector>
 
-#include "TimeVariable.h"
+#include "TimeVariable/TimeVariable.h"
 #include "Point.h"
 
 class Map;

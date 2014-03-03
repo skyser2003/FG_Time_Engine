@@ -14,7 +14,7 @@
 
 #include "Map.h"
 
-#include "TimeManager.h"
+#include "TimeManager/TimeManager.h"
 #include "UtilFunc.h"
 
 #include "Canvas/DxCanvas.h"

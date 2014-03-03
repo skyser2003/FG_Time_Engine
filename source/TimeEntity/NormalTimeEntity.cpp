@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "NormalTimeEntity.h"
 
-#include "TimeObject.h"
-#include "ITimeVariable.h"
+#include "TimeObject/TimeObject.h"
+#include "TimeVariable/ITimeVariable.h"
 
 namespace FG
 {

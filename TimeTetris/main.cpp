@@ -5,7 +5,7 @@
 #include "Block.h"
 #include "Point.h"
 
-#include "TimeVariable.h"
+#include "TimeVariable/TimeVariable.h"
 
 using namespace FG;
 

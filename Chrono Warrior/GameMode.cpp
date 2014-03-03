@@ -1,22 +1,24 @@
 #include "stdafx.h"
 #include "GameMode.h"
 
-#include "Map.h"
+#include "UIManager.h"
 
 #include "Window.h"
 #include "KeyboardInput.h"
 #include "MouseInput.h"
 
+#include "Map.h"
 #include "FieldUnit.h"
 
 namespace CW
 {
 	GameMode::GameMode()
 	{
+		mUIM = new FG::UIManager;
 	}
 	GameMode::~GameMode()
 	{
-
+		delete mUIM;
 	}
 
 	void GameMode::Initialize(const std::shared_ptr<FG::Window>& window)

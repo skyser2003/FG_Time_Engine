@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TimeManager.h"
 
-#include "TimeObject.h"
+#include "TimeObject/TimeObject.h"
 
 namespace FG
 {

@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "TimeObject.h"
 
-#include "TimeEntity.h"
-#include "ITimeVariable.h"
+#include "TimeEntity/TimeEntity.h"
+#include "TimeVariable/ITimeVariable.h"
 
-#include "NormalTimeEntity.h"
+#include "TimeEntity/NormalTimeEntity.h"
 
 namespace FG
 {

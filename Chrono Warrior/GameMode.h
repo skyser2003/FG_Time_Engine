@@ -11,6 +11,8 @@ namespace FG
 	class TextureClass;
 	class KeyboardInput;
 	class MouseInput;
+
+	class UIManager;
 }
 
 namespace CW
@@ -49,6 +51,9 @@ namespace CW
 		std::chrono::system_clock::time_point currentTime;
 		std::shared_ptr<Map> mMap;
 		std::shared_ptr<FieldUnit> mSelectedUnit;
+
+		// UI variables
+		FG::UIManager* mUIM;
 
 		// Graphics variables
 		FG::DxCanvas* mCanvas;
