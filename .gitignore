@@ -24,3 +24,6 @@
 *.sdf
 *.user
 *.suo
+
+# CMake
+build
