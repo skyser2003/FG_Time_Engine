@@ -91,6 +91,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>source;source/stdafx;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,37 +153,30 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FieldObject.h" />
-    <ClInclude Include="FieldUnit.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameMode.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="Mode.h" />
-    <ClInclude Include="Position.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Tile.h" />
-    <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="source\Extern\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="source\Game\Game.h" />
+    <ClInclude Include="source\Logic\FieldObject\FieldObject\FieldObject.h" />
+    <ClInclude Include="source\Logic\FieldObject\FieldUnit\FieldUnit.h" />
+    <ClInclude Include="source\Logic\Map\Map.h" />
+    <ClInclude Include="source\Logic\Position\Position.h" />
+    <ClInclude Include="source\Logic\Tile\Tile.h" />
+    <ClInclude Include="source\Mode\GameMode\GameMode.h" />
+    <ClInclude Include="source\Mode\Mode\Mode.h" />
+    <ClInclude Include="source\stdafx\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Chrono Warrior.cpp" />
-    <ClCompile Include="FieldObject.cpp" />
-    <ClCompile Include="FieldUnit.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameMode.cpp" />
-    <ClCompile Include="GameModeDraw.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Mode.cpp" />
-    <ClCompile Include="Position.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="tinyxml2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="source\Extern\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="source\Game\Game.cpp" />
+    <ClCompile Include="source\Logic\FieldObject\FieldObject\FieldObject.cpp" />
+    <ClCompile Include="source\Logic\FieldObject\FieldUnit\FieldUnit.cpp" />
+    <ClCompile Include="source\Logic\Map\Map.cpp" />
+    <ClCompile Include="source\Logic\Position\Position.cpp" />
+    <ClCompile Include="source\Logic\Tile\Tile.cpp" />
+    <ClCompile Include="source\Main\Chrono Warrior.cpp" />
+    <ClCompile Include="source\Mode\GameMode\GameMode.cpp" />
+    <ClCompile Include="source\Mode\GameMode\GameModeDraw.cpp" />
+    <ClCompile Include="source\Mode\Mode\Mode.cpp" />
+    <ClCompile Include="source\stdafx\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FG_DX_Engine\DxCanvas.vcxproj">

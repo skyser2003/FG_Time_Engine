@@ -52,78 +52,81 @@
     <Filter Include="Logic\Projectile">
       <UniqueIdentifier>{f99d8f08-557a-43e0-b0d0-553e2299a929}</UniqueIdentifier>
     </Filter>
+    <Filter Include="stdafx">
+      <UniqueIdentifier>{3e2266b1-f856-4217-a885-d33734fcc46f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="source\Extern\tinyxml2\tinyxml2.h">
+      <Filter>Extern\tinyxml2</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game\Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Mode.h">
-      <Filter>Mode\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMode.h">
-      <Filter>Mode\GameMode</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Logic\Tile</Filter>
-    </ClInclude>
-    <ClInclude Include="FieldObject.h">
+    <ClInclude Include="source\Logic\FieldObject\FieldObject\FieldObject.h">
       <Filter>Logic\FieldObject\FieldObject</Filter>
     </ClInclude>
-    <ClInclude Include="FieldUnit.h">
+    <ClInclude Include="source\Logic\FieldObject\FieldUnit\FieldUnit.h">
       <Filter>Logic\FieldObject\FieldUnit</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
+    <ClInclude Include="source\Logic\Map\Map.h">
       <Filter>Logic\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Position.h">
+    <ClInclude Include="source\Logic\Position\Position.h">
       <Filter>Logic\Position</Filter>
     </ClInclude>
-    <ClInclude Include="tinyxml2.h">
-      <Filter>Extern\tinyxml2</Filter>
+    <ClInclude Include="source\Logic\Tile\Tile.h">
+      <Filter>Logic\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Mode\GameMode\GameMode.h">
+      <Filter>Mode\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Mode\Mode\Mode.h">
+      <Filter>Mode\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="source\stdafx\stdafx.h">
+      <Filter>stdafx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="source\Extern\tinyxml2\tinyxml2.cpp">
+      <Filter>Extern\tinyxml2</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Mode.cpp">
-      <Filter>Mode\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMode.cpp">
-      <Filter>Mode\GameMode</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Chrono Warrior.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Logic\Tile</Filter>
-    </ClCompile>
-    <ClCompile Include="FieldObject.cpp">
+    <ClCompile Include="source\Logic\FieldObject\FieldObject\FieldObject.cpp">
       <Filter>Logic\FieldObject\FieldObject</Filter>
     </ClCompile>
-    <ClCompile Include="FieldUnit.cpp">
+    <ClCompile Include="source\Logic\FieldObject\FieldUnit\FieldUnit.cpp">
       <Filter>Logic\FieldObject\FieldUnit</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
+    <ClCompile Include="source\Logic\Map\Map.cpp">
       <Filter>Logic\Map</Filter>
     </ClCompile>
-    <ClCompile Include="Position.cpp">
+    <ClCompile Include="source\Logic\Position\Position.cpp">
       <Filter>Logic\Position</Filter>
     </ClCompile>
-    <ClCompile Include="GameModeDraw.cpp">
+    <ClCompile Include="source\Logic\Tile\Tile.cpp">
+      <Filter>Logic\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Main\Chrono Warrior.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Mode\GameMode\GameMode.cpp">
       <Filter>Mode\GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
-      <Filter>Extern\tinyxml2</Filter>
+    <ClCompile Include="source\Mode\GameMode\GameModeDraw.cpp">
+      <Filter>Mode\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Mode\Mode\Mode.cpp">
+      <Filter>Mode\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="source\stdafx\stdafx.cpp">
+      <Filter>stdafx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
