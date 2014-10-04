@@ -38,7 +38,9 @@ ADD_LIBRARY (TimeEngine
 ${TE_SOURCE_FILES}
 )
 FOREACH(subdir ${TE_SOURCE_SUBDIRS})
-    SOURCE_GROUP(${subdir} FILES ${TE_SOURCE_DIR}/${subdir}/*.cpp ${TE_SOURCE_DIR}/${subdir}/*.h)
+	STRING(REPLACE "/" "\\" tempSubdir ${subdir})
+	FILE(GLOB subdir_files ${TE_SOURCE_DIR}/${subdir}/*.cpp ${TE_SOURCE_DIR}/${subdir}/*.h)
+    SOURCE_GROUP(${tempSubdir} FILES ${subdir_files})
 ENDFOREACH()
 
 INCLUDE_DIRECTORIES( ${TE_SOURCE_DIR} )
